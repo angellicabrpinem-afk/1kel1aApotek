@@ -7,23 +7,50 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
   
-  <style>
-     /* Tambahan font universal 12px untuk semua elemen */
-    * { font-size: 12px; }
-    body { background-color: #e0f7fa; font-size: 12px; margin: 0; }
-    
-    /* Sidebar sesuai struktur awal Anda */
-    .sidebar { position: fixed; top: 0; left: 0; width: 200px; height: 100vh; background-color: #cca8e9; padding: 20px 10px; z-index: 1000; }
-    .sidebar a { display: block; padding: 10px 15px; text-decoration: none; color: #333; font-weight: 500; }
-    .sidebar a:hover, .sidebar a.active { background: rgba(255,255,255,0.4); border-radius: 5px; }
-    
-    .main-wrapper { margin-left: 200px; padding: 20px; }
-    
-    /* Kartu */
-    .card-container { display: flex; flex-wrap: wrap; gap: 20px; }
-    .card { width: 220px !important; border: none; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-    .card-img-top { height: 180px; object-fit: contain; background-color: #f8f9fa; padding: 5px; }
-  </style>
+ <style>
+  /* Reset dasar agar tidak bergeser */
+  * { font-size: 12px; box-sizing: border-box; }
+  body { background-color: #e0f7fa; margin: 0; padding: 0; }
+  
+  /* Sidebar Tetap 200px */
+  .sidebar { position: fixed; top: 0; left: 0; width: 200px; height: 100vh; background-color: #cca8e9; padding: 20px 10px; z-index: 1000; }
+  .sidebar a { display: block; padding: 10px 15px; text-decoration: none; color: #333; font-weight: 500; }
+  .sidebar a:hover, .sidebar a.active { background: rgba(255,255,255,0.4); border-radius: 5px; }
+  
+  /* Main Wrapper: Memastikan tidak meluap ke kanan */
+  .main-wrapper { 
+    margin-left: 200px; 
+    padding: 20px; 
+    width: calc(100% - 200px); 
+  }
+  
+  /* Container Kartu */
+  .card-container { 
+    display: flex; 
+    flex-wrap: wrap; 
+    gap: 20px; 
+    justify-content: flex-start; /* Kartu mulai dari kiri secara rapi */
+  }
+
+  /* Kartu User: Mengunci ukuran agar tidak gerak-gerak */
+  .card { 
+    width: 220px !important; 
+    border: none; 
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1); 
+    display: flex;
+    flex-direction: column;
+    height: 320px; /* Tinggi tetap agar baris kartu sejajar */
+  }
+
+  /* Gambar di dalam kartu */
+  .card-img-top { 
+    height: 200px; 
+    object-fit: cover; /* Gunakan cover agar proporsional */
+    background-color: #f8f9fa; 
+    padding: 5px; 
+    border-bottom: 1px solid #eee;
+  }
+</style>
 </head>
 <body>
 
