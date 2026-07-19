@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tambah Data Dokter - GoApotek</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet"/>
+  <style>
+    /* RESET & DASAR UTAMA - Sesuai Standar Standarisasi Layout GoApotek */
+    html, body {
+      max-width: 100%;
+      overflow-x: hidden;
+      background-color: #e0f7fa; /* Warna Background Ghibli Cyan */
+      margin: 0;
+      font-family: system-ui, -apple-system, sans-serif;
+    }
+    
+    /* Font Ukuran Global Konstan 12px-13px */
+    body, p, a, div, h1, h2, h3, h4, h5, h6, table, th, td, button, select, input, label, textarea {
+      font-size: 13px !important;
+    }
+
+    /* SIDEBAR KIRI - Disesuaikan persis dengan Gambar 2 */
+    .sidebar { 
+      position: fixed; 
+      top: 0; 
+      left: 0; 
+      width: 200px; 
+      height: 100vh; 
+      background-color: #cca8e9; /* Warna Ungu Khas */
+      padding: 20px 10px; 
+      z-index: 1000; 
+    }
+
+    .sidebar a { 
+      display: block; 
+      padding: 10px 15px; 
+      text-decoration: none; 
+      color: #333; 
+      font-weight: 500; 
+    }
+    
+    .sidebar a:hover, .sidebar a.active { 
+      background: rgba(255, 255, 255, 0.4); 
+      border-radius: 5px; 
+    }
+
+    .submenu-box {
+      padding-left: 15px; 
+      background: rgba(0,0,0,0.05); 
+      border-radius: 4px;
+    }
+
+    /* AREA KONTEN SEBELAH KANAN SIDEBAR */
+    .main-content-wrapper { 
+      margin-left: 200px; 
+      padding: 40px; 
+      min-height: 100vh;
+    }
+
+    /* KOTAK PUTIH UTAMA (Card-Box Form Konten) */
+    .container-box {
+      background: #ffffff;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.03);
+    }
+  </style>
+</head>
+<body>
+
+  
+  <!-- Sidebar -->
+  <nav class="sidebar">
+    <div class="sidebar-logo mb-4 fw-bold p-2">💊 GoApotek</div>
+    <a href="index.html">🏠 Beranda</a>
+    
+    <a href="#subMenuData" data-bs-toggle="collapse" class="d-flex justify-content-between align-items-center">
+          <span>📁 Data</span>
+          <i class="bi bi-chevron-down" style="font-size: 0.8rem;"></i>
+        </a>
+        
+        <div class="collapse show" id="subMenuData" style="padding-left: 15px; background: rgba(0,0,0,0.05); border-radius: 4px;">
+          <a href="dataobat.html">💊 Data Obat</a>
+          <a href="dokterpraktek.html" class="active">🩺 Dokter Praktek</a>
+          <a href="rekammedis.html">📋 Rekam Medis</a>
+          <a href="Penjualan.html">🛒 Penjualan</a>
+          <a href="user.html">🧑‍🧒‍🧒 User</a>
+        </div>
+  
+        <a href="laporan.html">📈 Laporan</a>
+        <a href="logout.html">🚪 Logout</a>
+      </nav>
+
+
+  <!-- KONTEN AREA UTAMA SEBELAH KANAN SIDEBAR -->
+  <main class="main-content-wrapper">
+    <div class="container-fluid p-0">
+      
+      <h4 class="fw-bold mb-4" style="font-size: 18px !important;">Tambah Data Dokter</h4>
+
+      <!-- Bungkus Form dengan Kotak Putih Melayang Standar Sistem -->
+      <div class="container-box">
+        <form
+          id="form_dokter"
+          action="simpan_dokter.php"
+          method="POST"
+          enctype="multipart/form-data"
+          class="needs-validation"
+          novalidate
+        >
+          <div class="row g-3">
+            <div class="col-md-6">
+              <label for="nama_dokter" class="form-label fw-bold">Nama Dokter</label>
+              <input
+                id="nama_dokter"
+                name="nama_dokter"
+                type="text"
+                class="form-control"
+                placeholder="cth: dr. Ahmad Subarjo, Sp.A"
+                required
+              />
+              <div class="invalid-feedback">Nama dokter wajib diisi.</div>
+            </div>
+            
+            <div class="col-md-6">
+              <label for="id_dokter" class="form-label fw-bold">ID Dokter</label>
+              <input
+                id="id_dokter"
+                name="id_dokter"
+                type="text"
+                class="form-control"
+                placeholder="cth: DKT-001"
+                required
+              />
+              <div class="invalid-feedback">ID Dokter wajib diisi.</div>
+            </div>
+
+            <div class="col-md-6">
+              <label for="spesialis" class="form-label fw-bold">Spesialis</label>
+              <input
+                id="spesialis"
+                name="spesialis"
+                type="text"
+                class="form-control"
+                placeholder="cth: Anak / Kandungan / Umum"
+                required
+              />
+            </div>
+
+            <div class="col-md-6">
+              <label for="kontak" class="form-label fw-bold">Kontak / No. Telp</label>
+              <input
+                id="kontak"
+                name="kontak"
+                type="text"
+                class="form-control"
+                placeholder="cth: 081234567xxx"
+              />
+            </div>
+
+            <div class="col-12">
+              <label for="jadwal" class="form-label fw-bold">Jadwal Praktek</label>
+              <input
+                id="jadwal"
+                name="jadwal"
+                type="text"
+                class="form-control"
+                placeholder="cth: Senin - Jumat (08:00 - 14:00)"
+              />
+            </div>
+            
+            <div class="col-md-6">
+              <label for="status" class="form-label fw-bold">Status</label>
+              <select id="status" name="status" class="form-select">
+                <option value="Aktif">Aktif</option>
+                <option value="Cuti">Cuti</option>
+                <option value="Tidak Aktif">Tidak Aktif</option>
+              </select>
+            </div>
+           
+            <div class="col-md-6">
+              <label for="foto_dokter" class="form-label fw-bold">Foto Dokter</label>
+              <input
+                id="foto_dokter"
+                name="foto_dokter"
+                type="file"
+                class="form-control"
+                accept="image/*"
+              />
+            </div>
+
+            <div class="col-12">
+              <label for="pengalaman" class="form-label fw-bold">Pengalaman & Riwayat Pendidikan</label>
+              <textarea
+                id="pengalaman"
+                name="pengalaman"
+                class="form-control"
+                rows="3"
+                placeholder="Tuliskan detail singkat pengalaman atau lulusan universitas..."
+              ></textarea>
+            </div>
+          </div>
+          
+          <div class="mt-4 d-flex gap-2">
+            <button type="submit" class="btn btn-success px-4 fw-bold">Simpan</button>
+            <a href="dokterpraktek.html" class="btn btn-secondary px-4">Kembali</a>
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // Validasi Bootstrap bawaan form
+    (() => {
+      'use strict'
+      const forms = document.querySelectorAll('.needs-validation')
+      Array.from(forms).forEach(form => {
+        form.addEventListener('submit', event => {
+          if (!form.checkValidity()) {
+            event.preventDefault()
+            event.stopPropagation()
+          }
+          form.classList.add('was-validated')
+        }, false)
+      })
+    })()
+  </script>
+</body>
+</html>

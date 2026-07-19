@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dokter Praktek - GoApotek</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+  
+  <style>
+    /* Dasar */
+    body { background-color: #e0f7fa; font-size: 13px; margin: 0; }
+    
+    /* Sidebar */
+    .sidebar { position: fixed; top: 0; left: 0; width: 200px; height: 100vh; background-color: #cca8e9; padding: 20px 10px; z-index: 1000; }
+    .sidebar a { display: block; padding: 10px 15px; text-decoration: none; color: #333; font-weight: 500; }
+    .sidebar a:hover, .sidebar a.active { background: rgba(255,255,255,0.4); border-radius: 5px; }
+    
+    /* Layout Utama */
+    .main-wrapper { margin-left: 200px; padding: 20px; }
+    .container { max-width: 1140px; }
+    
+    /* Card Dokter */
+    .card { border: none; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: 0.3s; }
+    .card:hover { transform: translateY(-5px); box-shadow: 0 8px 12px rgba(0,0,0,0.15); }
+    .card-img-top { height: 200px; object-fit: cover; }
+
+    .card-img-top {
+  height: 200px;
+  object-fit: cover;
+  /* Properti ini yang mengatur posisi foto */
+  /* 'top' berarti fokus ke bagian atas, geser angkanya (misal: 20%) untuk turun */
+  object-position: 20% 0%; 
+}
+  </style>
+</head>
+<body>
+
+  <!-- Sidebar -->
+  <nav class="sidebar">
+    <div class="sidebar-logo mb-4 fw-bold p-2">💊 GoApotek</div>
+    <a href="index.html">🏠 Beranda</a>
+    
+    <a href="#subMenuData" data-bs-toggle="collapse" class="d-flex justify-content-between align-items-center">
+          <span>📁 Data</span>
+          <i class="bi bi-chevron-down" style="font-size: 0.8rem;"></i>
+        </a>
+        
+        <div class="collapse show" id="subMenuData" style="padding-left: 15px; background: rgba(0,0,0,0.05); border-radius: 4px;">
+          <a href="dataobat.html">💊 Data Obat</a>
+          <a href="dokterpraktek.html" class="active">🩺 Dokter Praktek</a>
+          <a href="rekammedis.html">📋 Rekam Medis</a>
+          <a href="Penjualan.html">🛒 Penjualan</a>
+          <a href="user.html">🧑‍🧒‍🧒 User</a>
+        </div>
+  
+        <a href="laporan.html">📈 Laporan</a>
+        <a href="logout.html">🚪 Logout</a>
+      </nav>
+
+  <!-- Konten -->
+  <main class="main-wrapper">
+    <div class="container">
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="fw-bold m-0">Dokter Praktek</h2>
+        <a href="tambahdokter.html" class="btn btn-primary">+ Tambah Dokter</a>
+      </div>
+      
+      <div class="row g-4">
+        <!-- Dokter 1 -->
+        <div class="col-md-4">
+          <div class="card h-100">
+            <img src="aset/dokter2.jpg" class="card-img-top" alt="dr. Arini">
+            <div class="card-body">
+              <h6 class="card-title fw-bold">dr. Arini Asri, Sp.OG</h6>
+              <p class="card-text">Spesialis: Kandungan</p>
+              <a href="detaildokter2.html" class="btn btn-sm btn-success">Detail</a>
+            </div>
+          </div>
+        </div>
+        <!-- Dokter 2 -->
+        <div class="col-md-4">
+          <div class="card h-100">
+            <img src="aset/tirta.webp" class="card-img-top" alt="Dr.Tirta">
+            <div class="card-body">
+              <h6 class="card-title fw-bold">Dr.Tirta Mandira Hudhi</h6>
+              <p class="card-text">Spesialis: Umum</p>
+              <a href="detaildokter3.html" class="btn btn-sm btn-success">Detail</a>
+            </div>
+          </div>
+        </div>
+        <!-- Dokter 3 -->
+        <div class="col-md-4">
+          <div class="card h-100">
+            <img src="aset/dokter4crop.jpg" class="card-img-top" alt="dr. Amira">
+            <div class="card-body">
+              <h6 class="card-title fw-bold">dr. Amira, Sp.OG</h6>
+              <p class="card-text">Spesialis: Kulit</p>
+              <a href="detaildokter.html" class="btn btn-sm btn-success">Detail</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

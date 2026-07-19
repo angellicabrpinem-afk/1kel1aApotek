@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Operator - GoApotek</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet"/>
+  
+  <style>
+    /* Dasar */
+    body { background-color: #e0f7fa; font-size: 13px !important; margin: 0; }
+    
+    /* SIDEBAR (Struktur Asli) */
+    .sidebar { 
+      position: fixed; top: 0; left: 0; 
+      width: 200px; height: 100vh; 
+      background-color: #cca8e9; 
+      padding: 20px 10px; z-index: 1000; 
+    }
+    .sidebar-logo { font-weight: bold; padding: 10px; margin-bottom: 20px; font-size: 13px !important; }
+    .sidebar a { 
+      display: block; padding: 10px 15px; 
+      text-decoration: none; color: #333; font-weight: 500; font-size: 13px !important; 
+    }
+    .sidebar a:hover, .sidebar a.active { background: rgba(255,255,255,0.4); border-radius: 5px; }
+
+    /* SUB MENU (Sesuai Struktur Asli) */
+    #subMenuData { 
+      padding-left: 15px; 
+      background: rgba(0,0,0,0.05); 
+      border-radius: 4px; 
+    }
+    
+    /* Layout Utama */
+    .main-wrapper { margin-left: 200px; padding: 20px; }
+    
+    /* Konten Stabil & Terkunci */
+    .operator-main-container { 
+      background: white; padding: 25px; border-radius: 10px; 
+      box-shadow: 0 4px 6px rgba(0,0,0,0.05); 
+      max-width: 900px; 
+    }
+    
+    /* Foto Full (Contain) */
+    .photo-section img { 
+      width: 100%; height: 250px; 
+      object-fit: contain; background: #f8f9fa; border-radius: 8px; 
+    }
+    
+    .info-table { width: 100%; border-collapse: separate; border-spacing: 0 10px; }
+    .info-table td { padding: 5px 10px; vertical-align: top; }
+  </style>
+</head>
+<body>
+
+  <!-- Sidebar (Struktur & Ukuran Asli) -->
+  <nav class="sidebar">
+    <div class="sidebar-logo mb-4 fw-bold p-2">💊 GoApotek</div>
+    <a href="index.html">🏠 Beranda</a>
+    
+    <a href="#subMenuData" data-bs-toggle="collapse" class="d-flex justify-content-between align-items-center">
+      <span>📁 Data</span>
+      <i class="bi bi-chevron-down" style="font-size: 0.8rem;"></i>
+    </a>
+    
+    <div class="collapse show" id="subMenuData">
+      <a href="dataobat.html">💊 Data Obat</a>
+      <a href="dokterpraktek.html">🩺 Dokter Praktek</a>
+      <a href="rekammedis.html">📋 Rekam Medis</a>
+      <a href="Penjualan.html">🛒 Penjualan</a>
+      <a href="user.html" class="active">🧑‍🧒‍🧒 User</a>
+    </div>
+
+    <a href="laporan.html">📈 Laporan</a>
+    <a href="logout.html">🚪 Logout</a>
+  </nav>
+
+  <main class="main-wrapper">
+    <div class="container-fluid">
+      <h2 class="fw-bold mb-4">Operator 1</h2>
+
+      <div class="operator-main-container">
+        <div class="row g-4">
+          <div class="col-md-4">
+            <div class="photo-section">
+              <img src="aset/Anggota2.jpeg" alt="Foto Anggota">
+            </div>
+          </div>
+          <div class="col-md-8">
+            <table class="info-table">
+              <tr>
+                <td class="fw-bold" style="width: 150px;">Nama Operator</td>
+                <td>: <span class="fw-bold">Mutiara Saskia</span></td>
+              </tr>
+              <tr>
+                <td class="fw-bold">NIM</td>
+                <td>: 16325001</td>
+              </tr>
+              <tr>
+                <td class="fw-bold">Jurusan</td>
+                <td>: Manajemen Informatika</td>
+              </tr>
+              <tr>
+                <td class="fw-bold">Alamat</td>
+                <td>: Jln. Brawijaya</td>
+              </tr>
+              <tr>
+                <td class="fw-bold">Kontak</td>
+                <td>: 0821-9837-8898</td>
+              </tr>
+            </table>
+            <div class="mt-4">
+              <a href="user.html" class="btn btn-secondary btn-sm">← Kembali</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
