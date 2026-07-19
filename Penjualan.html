@@ -4,22 +4,25 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Penjualan Obat • GoApotek</title>
+  <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet"/>
+  <!-- SweetAlert2 -->
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   
   <style>
      /* Tambahan font universal 12px untuk semua elemen */
     * { font-size: 12px; }
-    /* Dasar */
+    /* Dasar - Disamakan dengan halaman utama */
     body { background-color: #e0f7fa; font-size: 12px; margin: 0; }
     
-    /* Sidebar */
+    /* Sidebar - Desain Fix & Dikunci 200px (Sama Persis dengan detailrekammedis3) */
     .sidebar { position: fixed; top: 0; left: 0; width: 200px; height: 100vh; background-color: #cca8e9; padding: 20px 10px; z-index: 1000; }
     .sidebar a { display: block; padding: 10px 15px; text-decoration: none; color: #333; font-weight: 500; }
     .sidebar a:hover, .sidebar a.active { background: rgba(255,255,255,0.4); border-radius: 5px; }
     
-    /* Layout Utama */
+    /* Layout Utama - Mencegah konten terpotong ke kanan */
     .main-wrapper { margin-left: 200px; padding: 20px; }
     
     /* Penyesuaian Card Agar Foto Lebih Kecil & Rapi */
@@ -38,9 +41,9 @@
 </head>
 <body>
 
-  <!-- Sidebar -->
+  <!-- Sidebar - Menggunakan struktur persis dari kodingan detailrekammedis3 Anda -->
   <nav class="sidebar">
-    <div class="sidebar-logo mb-4 fw-bold p-2">💊 GoApotek</div>
+    <a href="#" class="fw-bold mb-2 d-block" style="pointer-events: none;">💊 GoApotek</a>
     <a href="index.html">🏠 Beranda</a>
     
     <a href="#subMenuData" data-bs-toggle="collapse" class="d-flex justify-content-between align-items-center">
@@ -60,14 +63,15 @@
     <a href="logout.html">🚪 Logout</a>
   </nav>
 
+  <!-- Area Konten Utama -->
   <main class="main-wrapper">
     <div class="container-fluid">
       <div class="d-flex justify-content-between align-items-center mb-4">
-        <h2 class="fw-bold" style="font-size: 20px !important;">🛒 Penjualan Obat</h2>
+        <h2 class="fw-bold mb-0" style="font-size: 16px !important;">Penjualan Obat</h2>
         <div class="d-flex gap-2">
-          <input type="text" id="cariObat" class="form-control" style="width: 200px;" placeholder="Cari obat...">
-          <a href="prosescheckout.html" class="btn btn-outline-success">
-            🛒 Keranjang <span id="jumlahKeranjang" class="badge bg-danger">0</span>
+          <input type="text" id="cariObat" class="form-control form-control-sm" style="width: 200px;" placeholder="Cari obat...">
+          <a href="prosescheckout.html" class="btn btn-sm btn-outline-success fw-bold d-flex align-items-center gap-2">
+            <i class="bi bi-cart3"></i> Keranjang <span id="jumlahKeranjang" class="badge bg-danger">0</span>
           </a>
         </div>
       </div>
@@ -141,6 +145,7 @@
     });
   </script>
 
+  <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script> 
 </body>
 </html>

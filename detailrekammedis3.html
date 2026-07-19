@@ -12,49 +12,75 @@
   <style>
      /* Tambahan font universal 12px untuk semua elemen */
     * { font-size: 12px; }
-    /* Dasar - Disamakan dengan halaman utama */
-    body { background-color: #e0f7fa; font-size: 12px; margin: 0; }
     
-    /* Sidebar - Desain Fix & Dikunci 200px */
+    /* Mencegah halaman bergerak/geser ke kiri dan kanan (Anti-Scroll Horizontal) */
+    html, body { 
+      max-width: 100%;
+      overflow-x: hidden;
+      background-color: #e0f7fa; 
+      margin: 0; 
+    }
+    
+    /* Sidebar - Menetap Stabil di Kiri */
     .sidebar { position: fixed; top: 0; left: 0; width: 200px; height: 100vh; background-color: #cca8e9; padding: 20px 10px; z-index: 1000; }
     .sidebar a { display: block; padding: 10px 15px; text-decoration: none; color: #333; font-weight: 500; }
     .sidebar a:hover, .sidebar a.active { background: rgba(255,255,255,0.4); border-radius: 5px; }
     
-    /* Layout Utama - Mencegah konten terpotong ke kanan */
-    .main-wrapper { margin-left: 200px; padding: 20px; }
-    .container { max-width: 1140px; }
+    /* Kotak Latar Submenu - Menetap Stabil Tanpa Efek Sembunyi/Collapse */
+    .submenu-box {
+      padding-left: 15px; 
+      background: rgba(0,0,0,0.05); 
+      border-radius: 4px;
+    }
     
-    /* Putih Kontainer - Membungkus seluruh rekam medis & Profil */
-    .table-container { background: white; padding: 30px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
-
-    /* Avatar Frame */
-    .avatar-frame {
-      width: 100px;
-      height: 100px;
-      object-fit: cover;
-      border: 3px solid #cca8e9;
+    /* Layout Utama Kanan - Mengunci pergeseran layout */
+    .main-wrapper { 
+      margin-left: 200px; 
+      padding: 20px; 
+      box-sizing: border-box;
+    }
+    .container { max-width: 1140px; width: 100%; }
+    
+    /* Kotak Putih Utama (Card Sederhana) */
+    .table-container {
+      background: #ffffff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    }
+    
+    /* Pengaturan Header Kolom Tabel */
+    .table th {
+      width: 150px;
+      background-color: #f8f9fa;
+      font-weight: 600;
     }
 
-    /* Penyesuaian Lebar Label Tabel di dalam Accordion */
-    .table th { width: 180px; background-color: #f8f9fa; color: #555; }
+    /* Pengaturan Gambar Bulat Pasien */
+    .avatar-frame {
+      width: 70px;
+      height: 70px;
+      object-fit: cover;
+      border: 2px solid #cca8e9;
+    }
   </style>
 </head>
 <body>
 
-  <!-- Sidebar -->
+   <!-- Sidebar - Desain Menetap Tidak Berubah -->
   <nav class="sidebar">
-    <div class="sidebar-logo mb-4 fw-bold p-2">💊 GoApotek</div>
+    <a href="#" class="fw-bold mb-2 d-block" style="pointer-events: none;">💊 GoApotek</a>
     <a href="index.html">🏠 Beranda</a>
     
-    <a href="#subMenuData" data-bs-toggle="collapse" class="d-flex justify-content-between align-items-center">
-      <span>📁 Data</span>
-      <i class="bi bi-chevron-down" style="font-size: 0.8rem;"></i>
+    <a href="#" class="d-flex justify-content-between align-items-center" style="pointer-events: none;">
+      <span>📁 Data</span><i class="bi bi-chevron-down"></i>
     </a>
     
-    <div class="collapse show" id="subMenuData" style="padding-left: 15px; background: rgba(0,0,0,0.05); border-radius: 4px;">
+    <!-- Menggunakan DIV murni agar kotak transparan tidak hilang/bergeser saat pindah halaman -->
+    <div class="submenu-box" id="subMenuData">
       <a href="dataobat.html">💊 Data Obat</a>
       <a href="dokterpraktek.html">🩺 Dokter Praktek</a>
-      <a href="rekammedis.html" class="active">📋 Rekam Medis</a>
+      <a href="riwayatkunjungan.html" class="active">📋 Rekam Medis</a>
       <a href="Penjualan.html">🛒 Penjualan</a>
       <a href="user.html">🧑‍🧒‍🧒 User</a>
     </div>
@@ -62,53 +88,52 @@
     <a href="laporan.html">📈 Laporan</a>
     <a href="logout.html">🚪 Logout</a>
   </nav>
-
   <!-- Area Konten Utama -->
   <main class="main-wrapper">
     <div class="container">
-      <h2 class="fw-bold mb-4">Detail Rekam Medis Pasien</h2>
+      <h2 class="fw-bold mb-4" style="font-size: 16px !important;">Detail Rekam Medis Pasien</h2>
 
-      <!-- Kotak Putih Utama -->
+      <!-- Kotak Putih Utama (Card Sederhana) -->
       <div class="table-container">
         
-        <!-- Header Profil Pasien -->
-        <div class="row align-items-center mb-4 pb-4 border-bottom">
-          <div class="col-auto">
+        <!-- Header Profil Pasien Sederhana -->
+        <div class="d-flex align-items-center justify-content-between mb-4 pb-3 border-bottom">
+          <div class="d-flex align-items-center gap-3">
             <img src="aset/pasien rm3.jpeg" alt="Foto Pasien" class="rounded-circle avatar-frame">
+            <div>
+              <h3 class="fw-bold text-dark mb-1" style="font-size: 15px;">Putry Violita Mustary</h3>
+              <p class="text-muted mb-0"><strong>No. RM:</strong> <span class="text-dark fw-bold">RM-0003</span> &bull; Perempuan &bull; 18 tahun</p>
+            </div>
           </div>
-          <div class="col">
-            <h3 class="fw-bold text-dark mb-1">Putry Violita Mustary</h3>
-            <p class="text-muted mb-0"><strong>No. RM:</strong> RM-0003 &bull; Perempuan &bull; 18 tahun</p>
-          </div>
-          <div class="col text-end">
-            <a href="rekammedis.html" class="btn btn-sm btn-secondary px-3 py-2">
-              <i class="bi bi-arrow-left"></i> Kembali ke Rekam Medis
+          <div>
+            <a href="rekammedis.html" class="btn btn-sm btn-outline-secondary fw-bold">
+              <i class="bi bi-arrow-left"></i> Kembali
             </a>
           </div>
         </div>
 
         <h5 class="fw-bold mb-3 text-secondary"><i class="bi bi-journal-medical"></i> Riwayat Kunjungan Kesehatan (Terbaru di atas)</h5>
 
-        <!-- Sistem Akordion Data Rekam Medis -->
+        <!-- Sistem Akordion Data Rekam Medis Ringkas -->
         <div class="accordion accordion-flush border rounded" id="riwayatAccordion">
 
           <!-- Kunjungan 1: 28 Mei 2026 -->
           <div class="accordion-item">
-            <h2 class="accordion-header" id="heading-KJ-006">
-              <button class="accordion-button fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-KJ-006" aria-expanded="true" aria-controls="collapse-KJ-006">
-                📅 28 Mei 2026 — Dr. Arini Asri, Sp.OG <span class="badge bg-info text-dark ms-3">Diagnosa: Dismenore</span>
+            <h2 class="accordion-header" id="heading0">
+              <button class="accordion-button fw-bold text-dark bg-light py-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapse0" aria-expanded="true" aria-controls="collapse0">
+                📅 28 Mei 2026 &mdash; Dr. Arini Asri, Sp.OG <span class="badge bg-info text-dark ms-2">Dismenore</span>
               </button>
             </h2>
-            <div id="collapse-KJ-006" class="accordion-collapse collapse show" aria-labelledby="heading-KJ-006" data-bs-parent="#riwayatAccordion">
-              <div class="accordion-body bg-light p-3">
-                <table class="table table-bordered bg-white align-middle m-0">
+            <div id="collapse0" class="accordion-collapse collapse show" aria-labelledby="heading0" data-bs-parent="#riwayatAccordion">
+              <div class="accordion-body p-0">
+                <table class="table table-bordered table-sm align-middle m-0">
                   <tbody>
                     <tr><th>Subjektif</th><td>Keluhan nyeri kram hebat di perut bagian bawah selama menstruasi.</td></tr>
-                    <tr><th>Olah Raga / Vitals</th><td>Tensi: 110/70 mmHg, Nadi: 80x/menit, BB: 40kg</td></tr>
+                    <tr><th>Olah Raga / Vitals</th><td>Tensi: 110/70 mmHg, Nadi: 80x/menit, BB: 40 kg</td></tr>
                     <tr><th>Diagnosa</th><td class="fw-bold text-danger">Dismenore</td></tr>
                     <tr><th>Penatalaksanaan</th><td>Obat: Ibuprofen 400 mg diminum 3x sehari setelah makan hanya saat nyeri haid menyerang.</td></tr>
                     <tr><th>Saran / Edukasi</th><td>Gunakan kompres hangat di perut bawah saat kram, istirahat yang cukup. Olahraga ringan di luar masa haid, dan segera kembali jika nyeri tidak membaik dengan obat.</td></tr>
-                    <tr><th>Next Follow-Up</th><td>Disesuaikan dengan jadwal kontrol, misal 1 bulan kemudian jika keluhan masih berlanjut</td></tr>
+                    <tr><th>Next Follow-Up</th><td>Disesuaikan dengan jadwal kontrol, misal 1 bulan kemudian jika keluhan masih berlanjut.</td></tr>
                   </tbody>
                 </table>
               </div>
@@ -117,14 +142,14 @@
 
           <!-- Kunjungan 2: 20 Mei 2026 -->
           <div class="accordion-item">
-            <h2 class="accordion-header" id="heading-KJ-007">
-              <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-KJ-007" aria-expanded="false" aria-controls="collapse-KJ-007">
-                📅 20 Mei 2026 — Dr. Amira, Sp.OG <span class="badge bg-secondary ms-3">Diagnosa: Acne Vulgaris</span>
+            <h2 class="accordion-header" id="heading1">
+              <button class="accordion-button collapsed fw-bold text-dark bg-light py-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1" aria-expanded="false" aria-controls="collapse1">
+                📅 20 Mei 2026 &mdash; Dr. Amira, Sp.OG <span class="badge bg-secondary ms-2">Acne Vulgaris</span>
               </button>
             </h2>
-            <div id="collapse-KJ-007" class="accordion-collapse collapse" aria-labelledby="heading-KJ-007" data-bs-parent="#riwayatAccordion">
-              <div class="accordion-body bg-light p-3">
-                <table class="table table-bordered bg-white align-middle m-0">
+            <div id="collapse1" class="accordion-collapse collapse" aria-labelledby="heading1" data-bs-parent="#riwayatAccordion">
+              <div class="accordion-body p-0">
+                <table class="table table-bordered table-sm align-middle m-0">
                   <tbody>
                     <tr><th>Subjektif</th><td>Keluhan timbul jerawat kemerahan dan meradang di area wajah bersisik dan kemerahan.</td></tr>
                     <tr><th>Olah Raga / Vitals</th><td>Tensi: 110/70 mmHg, Nadi: 76x/menit, BB: 40 kg</td></tr>

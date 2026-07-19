@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Detail Pasien • Riwayat Kunjungan</title>
+  <title>Detail Pasien - GoApotek</title>
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
   <!-- Bootstrap Icons -->
@@ -12,46 +12,63 @@
   <style>
      /* Tambahan font universal 12px untuk semua elemen */
     * { font-size: 12px; }
-    /* Dasar - Disamakan dengan riwayatkunjungan.html */
-    body { background-color: #e0f7fa; font-size: 12px; margin: 0; }
     
-    /* Sidebar - Disamakan persis dengan riwayatkunjungan.html */
+    /* Mencegah halaman bergerak/geser ke kiri dan kanan (Anti-Scroll Horizontal) */
+    html, body { 
+      max-width: 100%;
+      overflow-x: hidden;
+      background-color: #e0f7fa; 
+      margin: 0; 
+    }
+    
+    /* Sidebar - Menetap Stabil di Kiri */
     .sidebar { position: fixed; top: 0; left: 0; width: 200px; height: 100vh; background-color: #cca8e9; padding: 20px 10px; z-index: 1000; }
     .sidebar a { display: block; padding: 10px 15px; text-decoration: none; color: #333; font-weight: 500; }
     .sidebar a:hover, .sidebar a.active { background: rgba(255,255,255,0.4); border-radius: 5px; }
     
-    /* Layout Utama */
-    .main-wrapper { margin-left: 200px; padding: 20px; }
-    .container { max-width: 1140px; }
+    .submenu-box {
+      padding-left: 15px; 
+      background: rgba(0,0,0,0.05); 
+      border-radius: 4px;
+    }
     
-    /* Putih Kontainer - Diadopsi dari gaya .table-container Gambar 1 */
+    /* Layout Utama Kanan - Mengunci pergeseran layout */
+    .main-wrapper { 
+      margin-left: 200px; 
+      padding: 20px; 
+      box-sizing: border-box;
+    }
+    .container { max-width: 1140px; width: 100%; }
+    
+    /* Card Detail Putih Kontainer */
     .table-container { background: white; padding: 30px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+    th { width: 180px; color: #555; vertical-align: top; }
 
-    /* Foto Pasien - Diatur proporsional di tengah kotak putih */
-    .patient-img {
-      width: 120px;
-      height: 120px;
+    /* Ukuran gambar sedang & proporsional sesuai standar detail */
+    .patient-img-sedang {
+      max-width: 180px;
+      height: 180px;
       object-fit: cover;
+      border-radius: 8px;
       border: 3px solid #cca8e9;
     }
   </style>
 </head>
 <body>
 
-  <!-- Sidebar (Sinkron Sesuai Gambar 1) -->
+  <!-- Sidebar - Desain Konsisten GoApotek -->
   <nav class="sidebar">
-    <div class="sidebar-logo mb-4 fw-bold p-2">💊 GoApotek</div>
+    <a href="#" class="fw-bold mb-2 d-block" style="pointer-events: none;">💊 GoApotek</a>
     <a href="index.html">🏠 Beranda</a>
     
-    <a href="#subMenuData" data-bs-toggle="collapse" class="d-flex justify-content-between align-items-center">
-      <span>📁 Data</span>
-      <i class="bi bi-chevron-down" style="font-size: 0.8rem;"></i>
+    <a href="#subMenuData" data-bs-toggle="collapse" class="d-flex justify-content-between align-items-center" aria-expanded="true">
+      <span>📁 Data</span><i class="bi bi-chevron-down"></i>
     </a>
     
-    <div class="collapse show" id="subMenuData" style="padding-left: 15px; background: rgba(0,0,0,0.05); border-radius: 4px;">
+    <div class="collapse show submenu-box" id="subMenuData">
       <a href="dataobat.html">💊 Data Obat</a>
       <a href="dokterpraktek.html">🩺 Dokter Praktek</a>
-      <a href="rekammedis.html" class="active">📋 Rekam Medis</a>
+      <a href="riwayatkunjungan.html" class="active">📋 Rekam Medis</a>
       <a href="Penjualan.html">🛒 Penjualan</a>
       <a href="user.html">🧑‍🧒‍🧒 User</a>
     </div>
@@ -63,55 +80,38 @@
   <!-- Area Konten Utama -->
   <main class="main-wrapper">
     <div class="container">
-      <h2 class="fw-bold mb-4">Detail Riwayat Pasien</h2>
+      <h2 class="fw-bold mb-4" style="font-size: 16px !important;">Detail Riwayat Pasien</h2>
 
-      <!-- Kotak Putih Utama -->
+      <!-- Kotak Putih Utama (Card) -->
       <div class="table-container">
-        
-        <!-- Foto Pasien Berada di Dalam Kotak Putih Menuju Atas Tabel -->
-        <div class="text-center mb-4">
-          <img src="aset/pasien1.jpeg" alt="Foto Umar" class="patient-img rounded-circle mb-2" />
-          <h4 class="fw-bold text-dark mb-0">La Ode Umar La Maju</h4>
-          <p class="text-muted small">Pasien Rawat Jalan</p>
+        <div class="row align-items-center">
+          
+          <!-- Sisi Kiri: Foto Pasien & Tombol Kembali di bawahnya -->
+          <div class="col-md-4 text-center mb-3 mb-md-0">
+            <img src="aset/pasien1.jpeg" alt="Foto Umar" class="patient-img-sedang shadow-sm mb-4" />
+            <div>
+              <a href="riwayatkunjungan.html" class="btn btn-secondary w-75">
+                <i class="bi bi-arrow-left"></i> Kembali
+              </a>
+            </div>
+          </div>
+
+          <!-- Sisi Kanan: Informasi Detail Riwayat Pasien -->
+          <div class="col-md-8">
+            <h4 class="mb-3 fw-bold" style="font-size: 14px !important;">La Ode Umar La Maju <span class="badge bg-info text-dark ms-2 fw-normal" style="font-size: 10px;">Pasien Rawat Jalan</span></h4>
+            <table class="table table-borderless m-0">
+              <tbody>
+                <tr><th>Nama Pasien</th><td>: <span class="fw-semibold">La Ode Umar La Maju</span></td></tr>
+                <tr><th>Tanggal Kunjungan</th><td>: 1 Juni 2026</td></tr>
+                <tr><th>Dokter Pemeriksa</th><td>: Dr. Tirta Mandira Hudhi</td></tr>
+                <tr><th>Keluhan</th><td>: Migren 1 Minggu</td></tr>
+                <tr><th>Diagnosa</th><td>: Sakit Kepala Sebelah</td></tr>
+                <tr><th>Resep Obat</th><td>: <span class="badge bg-secondary px-2 py-1">Decolsin</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+
         </div>
-
-        <!-- Tabel Detail Informasi -->
-        <table class="table table-bordered align-middle">
-          <tbody>
-            <tr>
-              <th class="table-light" width="250">Nama Pasien</th>
-              <td class="fw-semibold">La Ode Umar La Maju</td>
-            </tr>
-            <tr>
-              <th class="table-light">Tanggal Kunjungan</th>
-              <td>1 Juni 2026</td>
-            </tr>
-            <tr>
-              <th class="table-light">Dokter Pemeriksa</th>
-              <td>Dr. Tirta Mandira Hudhi</td>
-            </tr>
-            <tr>
-              <th class="table-light">Keluhan</th>
-              <td>Migren 1 Minggu</td>
-            </tr>
-            <tr>
-              <th class="table-light">Diagnosa</th>
-              <td>Sakit Kepala Sebelah</td>
-            </tr>
-            <tr>
-              <th class="table-light">Resep Obat yang Diberikan</th>
-              <td><span class="badge bg-secondary px-3 py-2">Decolsin</span></td>
-            </tr>
-          </tbody>
-        </table>
-
-        <!-- Tombol Aksi Kembali -->
-        <div class="d-flex justify-content-end mt-4">
-          <a href="riwayatkunjungan.html" class="btn btn-sm btn-secondary px-3 py-2">
-            <i class="bi bi-arrow-left"></i> Kembali ke Riwayat
-          </a>
-        </div>
-
       </div>
     </div>
   </main>

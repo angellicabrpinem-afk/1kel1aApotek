@@ -8,6 +8,9 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet"/>
   
   <style>
+    /* Tambahan font universal 12px untuk semua elemen */
+    * { font-size: 12px; }
+
     /* Dasar */
     body { background-color: #e0f7fa; font-size: 12px; margin: 0; }
     
@@ -22,13 +25,39 @@
     /* Tabel Dikecilkan */
     .table-responsive { max-width: 800px; }
     
-    @media print { .no-print { display: none; } .main-wrapper { margin-left: 0; } }
+    /* ------------------------------------------------------------------ */
+    /* ATURAN PERFECT PRINT: MENGHILANGKAN SIDEBAR & MERAPIKAN MARGIN KERTAS */
+    /* ------------------------------------------------------------------ */
+    @media print { 
+      /* Sembunyikan sidebar dan elemen non-cetak secara mutlak */
+      .sidebar, .no-print { 
+        display: none !important; 
+      } 
+      
+      /* Geser wrapper penuh ke kiri kertas */
+      .main-wrapper { 
+        margin-left: 0 !important; 
+        padding: 0 !important; 
+      }
+
+      /* Sesuaikan area cetak agar tabel dan kop melebar optimal */
+      .header-kop, .d-flex, .table-responsive, .row {
+        max-width: 100% !important;
+        width: 100% !important;
+      }
+
+      /* Latar belakang putih polos bersih */
+      body {
+        background-color: #ffffff !important;
+      }
+    }
   </style>
 </head>
 <body>
 
+  <!-- Sidebar -->
   <nav class="sidebar">
-    <div class="sidebar-logo mb-4 fw-bold p-2">💊 GoApotek</div>
+    <a href="#" class="fw-bold mb-2 d-block" style="pointer-events: none;">💊 GoApotek</a>
     <a href="index.html">🏠 Beranda</a>
     
     <a href="#subMenuData" data-bs-toggle="collapse" class="d-flex justify-content-between align-items-center">
@@ -50,15 +79,15 @@
 
   <main class="main-wrapper">
     <div class="header-kop text-center" style="max-width: 800px;">
-      <h3 class="fw-bold">APOTEK GO-APOTEK</h3>
-      <p>Jl. Kesehatan No. 123, Kota Anda | Telp: (021) 1234567</p>
+      <h1 class="fw-bold mb-1" style="font-size: 16px !important;">APOTEK GO-APOTEK</h1>
+      <p class="text-muted mb-0">Jl. Kesehatan No. 123, Kota Anda | Telp: (021) 1234567</p>
     </div>
 
     <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2" style="max-width: 800px;">
-      <h4 class="mb-0">Detail Penjualan Tahun Ini</h4>
-      <div class="d-flex gap-2">
-        <a href="laporan.html" class="btn btn-secondary btn-sm no-print">Kembali</a>
-        <button onclick="window.print()" class="btn btn-primary btn-sm no-print">🖨️ Cetak Laporan</button>
+      <h4 class="fw-bold m-0" style="font-size: 16px !important;">Detail Penjualan Tahun Ini</h4>
+      <div class="d-flex gap-2 no-print">
+        <a href="laporan.html" class="btn btn-secondary btn-sm">Kembali</a>
+        <button onclick="window.print()" class="btn btn-primary btn-sm">🖨️ Cetak Laporan</button>
       </div>
     </div>
 
@@ -95,7 +124,7 @@
       </table>
     </div>
 
-    <div class="row mt-3" style="max-width: 800px;">
+    <div class="row mt-5" style="max-width: 800px;">
       <div class="col-8"></div>
       <div class="col-4 text-center">
         <p class="mb-1">Jakarta, 31 Desember 2026</p>

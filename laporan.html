@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Laporan Transaksi - GoApotek</title>
+  <title>Laporan Transaksi • GoApotek</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
   
@@ -13,7 +13,7 @@
     /* Dasar */
     body { background-color: #e0f7fa; font-size: 12px; margin: 0; }
     
-    /* Sidebar */
+    /* Sidebar - Desain Fix & Dikunci 200px (Sama Persis) */
     .sidebar { position: fixed; top: 0; left: 0; width: 200px; height: 100vh; background-color: #cca8e9; padding: 20px 10px; z-index: 1000; }
     .sidebar a { display: block; padding: 10px 15px; text-decoration: none; color: #333; font-weight: 500; }
     .sidebar a:hover, .sidebar a.active { background: rgba(255,255,255,0.4); border-radius: 5px; }
@@ -29,32 +29,32 @@
 </head>
 <body>
 
-  <!-- Sidebar -->
+  <!-- Sidebar - 100% Cocok Persis Dengan Halaman Lain -->
   <nav class="sidebar">
-    <div class="sidebar-logo mb-4 fw-bold p-2">💊 GoApotek</div>
+    <a href="#" class="fw-bold mb-2 d-block" style="pointer-events: none;">💊 GoApotek</a>
     <a href="index.html">🏠 Beranda</a>
     
     <a href="#subMenuData" data-bs-toggle="collapse" class="d-flex justify-content-between align-items-center">
-          <span>📁 Data</span>
-          <i class="bi bi-chevron-down" style="font-size: 0.8rem;"></i>
-        </a>
-        
-        <div class="collapse show" id="subMenuData" style="padding-left: 15px; background: rgba(0,0,0,0.05); border-radius: 4px;">
-          <a href="dataobat.html">💊 Data Obat</a>
-          <a href="dokterpraktek.html">🩺 Dokter Praktek</a>
-          <a href="rekammedis.html">📋 Rekam Medis</a>
-          <a href="Penjualan.html">🛒 Penjualan</a>
-          <a href="user.html">🧑‍🧒‍🧒 User</a>
-        </div>
-  
-        <a href="laporan.html" class="active">📈 Laporan</a>
-        <a href="logout.html">🚪 Logout</a>
-      </nav>
+      <span>📁 Data</span>
+      <i class="bi bi-chevron-down" style="font-size: 0.8rem;"></i>
+    </a>
+    
+    <div class="collapse show" id="subMenuData" style="padding-left: 15px; background: rgba(0,0,0,0.05); border-radius: 4px;">
+      <a href="dataobat.html">💊 Data Obat</a>
+      <a href="dokterpraktek.html">🩺 Dokter Praktek</a>
+      <a href="rekammedis.html">📋 Rekam Medis</a>
+      <a href="Penjualan.html">🛒 Penjualan</a>
+      <a href="user.html">🧑‍🧒‍🧒 User</a>
+    </div>
+
+    <a href="laporan.html" class="active">📈 Laporan</a>
+    <a href="logout.html">🚪 Logout</a>
+  </nav>
 
   <!-- Konten -->
   <main class="main-wrapper">
     <div class="container">
-      <h2 class="fw-bold mb-4">Laporan Transaksi</h2>
+      <h2 class="fw-bold mb-4" style="font-size: 16px !important;">Laporan Transaksi</h2>
 
       <!-- Grid Laporan -->
       <div class="row g-3">
