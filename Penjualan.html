@@ -9,8 +9,10 @@
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   
   <style>
+     /* Tambahan font universal 12px untuk semua elemen */
+    * { font-size: 12px; }
     /* Dasar */
-    body { background-color: #e0f7fa; font-size: 13px; margin: 0; }
+    body { background-color: #e0f7fa; font-size: 12px; margin: 0; }
     
     /* Sidebar */
     .sidebar { position: fixed; top: 0; left: 0; width: 200px; height: 100vh; background-color: #cca8e9; padding: 20px 10px; z-index: 1000; }
@@ -100,7 +102,7 @@
             </div>
             <div class="card-body text-center p-2 d-flex flex-column justify-content-between">
               <div>
-                <h6 class="card-title fw-bold mb-1" style="font-size: 13px !important;">${obat.nama}</h6>
+                <h6 class="card-title fw-bold mb-1" style="font-size: 12px !important;">${obat.nama}</h6>
                 <p class="text-muted small mb-2">Rp ${obat.harga.toLocaleString()}</p>
               </div>
               <div>
