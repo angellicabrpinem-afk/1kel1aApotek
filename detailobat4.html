@@ -42,13 +42,15 @@
     .card { border: none; box-shadow: 0 4px 6px rgba(0,0,0,0.1); border-radius: 10px; }
     th { width: 180px; color: #555; vertical-align: top; }
 
-    /* Ukuran gambar sedang & proporsional */
-    .img-obat-sedang {
-      max-width: 180px;
-      height: 180px;
-      object-fit: cover;
-      border-radius: 8px;
-    }
+   /* Ukuran gambar diperkecil agar lebih proporsional */
+  .img-obat-sedang {
+    max-width: 120px; /* Sebelumnya 180px */
+    height: 120px;    /* Sebelumnya 180px */
+    object-fit: cover;
+    border-radius: 8px;
+    display: block;
+    margin: 0 auto;   /* Memastikan gambar tetap di tengah kolom */
+  }
   </style>
 </head>
 <body>
@@ -86,9 +88,6 @@
           <!-- Sisi Kiri: Foto Obat & Tombol Kembali di bawahnya -->
           <div class="col-md-4 text-center mb-3 mb-md-0">
             <img src="aset/ibuprofen.png" alt="Ibuprofen" class="img-obat-sedang shadow-sm mb-4">
-            <div>
-              <a href="dataobat.html" class="btn btn-secondary w-50">🔙 Kembali</a>
-            </div>
           </div>
           
           <!-- Sisi Kanan: Informasi Detail Obat -->
@@ -108,8 +107,8 @@
                 <tr><th>Kontraindikasi</th><td>: Ibu hamil dan menyusui.</td></tr>
               </tbody>
             </table>
-          </div>
-          
+         <div class="mt-4">
+          <a href="dataobat.html" class="btn btn-secondary">🔙 Kembali</a>
         </div>
       </div>
     </div>
