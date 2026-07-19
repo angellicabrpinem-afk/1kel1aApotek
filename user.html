@@ -7,45 +7,64 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
   
- <style>
-  /* Reset dasar agar tidak bergeser */
-  * { font-size: 12px; box-sizing: border-box; }
-  body { background-color: #e0f7fa; margin: 0; padding: 0; }
+<style>
+  /* 1. Tambahkan ini: Mencegah body bergeser walau ada konten panjang */
+  html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    overflow-x: hidden; /* <--- INI KUNCI MENGHILANGKAN SCROLL HORIZONTAL */
+    background-color: #e0f7fa;
+  }
+
+  * { 
+    font-size: 12px; 
+    box-sizing: border-box; /* Memastikan padding tidak menambah lebar elemen */
+  }
   
-  /* Sidebar Tetap 200px */
-  .sidebar { position: fixed; top: 0; left: 0; width: 200px; height: 100vh; background-color: #cca8e9; padding: 20px 10px; z-index: 1000; }
+  .sidebar { 
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+    width: 200px; 
+    height: 100vh; 
+    background-color: #cca8e9; 
+    padding: 20px 10px; 
+    z-index: 1000; 
+  }
+
   .sidebar a { display: block; padding: 10px 15px; text-decoration: none; color: #333; font-weight: 500; }
   .sidebar a:hover, .sidebar a.active { background: rgba(255,255,255,0.4); border-radius: 5px; }
   
-  /* Main Wrapper: Memastikan tidak meluap ke kanan */
+  /* Gunakan 100vw untuk mengunci lebar tepat sesuai layar */
   .main-wrapper { 
     margin-left: 200px; 
     padding: 20px; 
-    width: calc(100% - 200px); 
+    width: calc(100vw - 200px); 
+    min-height: 100vh;
   }
   
-  /* Container Kartu */
   .card-container { 
     display: flex; 
     flex-wrap: wrap; 
     gap: 20px; 
-    justify-content: flex-start; /* Kartu mulai dari kiri secara rapi */
+    justify-content: flex-start;
   }
 
-  /* Kartu User: Mengunci ukuran agar tidak gerak-gerak */
   .card { 
+    flex: 0 0 220px; /* <--- PENTING: Mengunci kartu agar tidak ikut melar/menciut */
     width: 220px !important; 
     border: none; 
     box-shadow: 0 2px 5px rgba(0,0,0,0.1); 
     display: flex;
     flex-direction: column;
-    height: 320px; /* Tinggi tetap agar baris kartu sejajar */
+    height: 320px; 
   }
 
-  /* Gambar di dalam kartu */
   .card-img-top { 
     height: 180px; 
-    object-fit: cover; /* Gunakan cover agar proporsional */
+    width: 220px; /* Kunci lebar gambar */
+    object-fit: cover; 
     background-color: #f8f9fa; 
     padding: 5px; 
     border-bottom: 1px solid #eee;
