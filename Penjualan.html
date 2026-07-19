@@ -11,33 +11,50 @@
   <!-- SweetAlert2 -->
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   
-  <style>
-     /* Tambahan font universal 12px untuk semua elemen */
-    * { font-size: 12px; }
-    /* Dasar - Disamakan dengan halaman utama */
-    body { background-color: #e0f7fa; font-size: 12px; margin: 0; }
-    
-    /* Sidebar - Desain Fix & Dikunci 200px (Sama Persis dengan detailrekammedis3) */
-    .sidebar { position: fixed; top: 0; left: 0; width: 200px; height: 100vh; background-color: #cca8e9; padding: 20px 10px; z-index: 1000; }
-    .sidebar a { display: block; padding: 10px 15px; text-decoration: none; color: #333; font-weight: 500; }
-    .sidebar a:hover, .sidebar a.active { background: rgba(255,255,255,0.4); border-radius: 5px; }
-    
-    /* Layout Utama - Mencegah konten terpotong ke kanan */
-    .main-wrapper { margin-left: 200px; padding: 20px; }
-    
-    /* Penyesuaian Card Agar Foto Lebih Kecil & Rapi */
-    .card { border: none; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); transition: 0.3s; overflow: hidden; background: #fff; }
-    .card:hover { transform: translateY(-5px); box-shadow: 0 6px 12px rgba(0,0,0,0.1); }
-    
-    /* Pembungkus foto agar ada jarak padding */
-    .card-img-wrapper { padding: 15px 15px 5px 15px; display: flex; justify-content: center; align-items: center; background: #fff; }
-    
-    /* Ukuran foto dikecilkan jadi 90px dengan object-fit contain */
-    .card-img-top { height: 90px; width: auto; max-width: 100%; object-fit: contain; cursor: pointer; }
-    
-    .qty-input { width: 60px; padding: 2px 5px; text-align: center; }
-    .badge-best-seller { position: absolute; top: 8px; left: 8px; background: #ff5722; color: #fff; padding: 2px 6px; border-radius: 4px; font-size: 9px; font-weight: bold; z-index: 1; }
-  </style>
+ <style>
+  /* Reset universal untuk memastikan tidak ada spasi tambahan */
+  * { font-size: 12px; box-sizing: border-box; }
+  
+  html, body { 
+    background-color: #e0f7fa; 
+    margin: 0; 
+    padding: 0; 
+    overflow-x: hidden; /* Mengunci scroll horizontal */
+    width: 100%;
+  }
+  
+  /* Sidebar Tetap */
+  .sidebar { position: fixed; top: 0; left: 0; width: 200px; height: 100vh; background-color: #cca8e9; padding: 20px 10px; z-index: 1000; }
+  .sidebar a { display: block; padding: 10px 15px; text-decoration: none; color: #333; font-weight: 500; }
+  .sidebar a:hover, .sidebar a.active { background: rgba(255,255,255,0.4); border-radius: 5px; }
+  
+  /* Layout Utama */
+  .main-wrapper { 
+    margin-left: 200px; 
+    padding: 20px; 
+  }
+
+  /* Kartu Produk - Diberi tinggi tetap agar sejajar */
+  .card { 
+    border: none; 
+    border-radius: 12px; 
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05); 
+    height: 250px; /* Tinggi kartu dikunci agar tidak bergeser saat hover */
+    transition: 0.3s; 
+    overflow: hidden; 
+    background: #fff; 
+  }
+  .card:hover { transform: translateY(-5px); box-shadow: 0 6px 12px rgba(0,0,0,0.1); }
+  
+  .card-img-wrapper { height: 100px; display: flex; justify-content: center; align-items: center; padding-top: 10px; }
+  .card-img-top { height: 80px; width: auto; max-width: 90%; object-fit: contain; cursor: pointer; }
+  
+  .qty-input { width: 60px; padding: 2px 5px; text-align: center; }
+  .badge-best-seller { position: absolute; top: 8px; left: 8px; background: #ff5722; color: #fff; padding: 2px 6px; border-radius: 4px; font-size: 9px; font-weight: bold; z-index: 1; }
+  
+  /* Memastikan Grid tidak melompat */
+  .row { margin-left: 0; margin-right: 0; }
+</style>
 </head>
 <body>
 
