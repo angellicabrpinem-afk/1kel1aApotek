@@ -8,10 +8,20 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet"/>
   
   <style>
-     /* Tambahan font universal 12px untuk semua elemen */
-    * { font-size: 12px; }
     /* Dasar */
-    body { background-color: #e0f7fa; font-size: 12px !important; margin: 0; }
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    /* Mengunci agar tidak bisa ditarik/scroll */
+    overflow: hidden;
+    /* Mencegah pergerakan pada perangkat mobile */
+    touch-action: none;
+    /* Properti dasar Anda */
+    background-color: #e0f7fa;
+    font-size: 12px;
+}
     
     /* SIDEBAR (Struktur Asli) */
     .sidebar { 
@@ -52,6 +62,24 @@
     
     .info-table { width: 100%; border-collapse: separate; border-spacing: 0 10px; }
     .info-table td { padding: 5px 10px; vertical-align: top; }
+
+       /* Memberi jarak pada kotak submenu */
+    .submenu-box {
+      padding-left: 15px; 
+      padding-top: 5px;    
+      padding-bottom: 10px; 
+      background: rgba(0,0,0,0.05); 
+      border-radius: 4px;
+      margin-bottom: 10px;  
+      margin-top: 5px;      
+    }
+
+    /* Mengatur jarak antar link di dalam submenu */
+    .submenu-box a {
+      padding: 6px 10px !important; 
+      margin-bottom: 2px;          
+      font-size: 11px !important;   
+    }
   </style>
 </head>
 <body>

@@ -8,20 +8,23 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
   
 <style>
-  /* 1. Tambahkan ini: Mencegah body bergeser walau ada konten panjang */
-  html, body {
+  /* 1. Kunci Scrollbar agar posisi layar stabil dan bisa di-scroll vertikal jika panjang */
+  html { overflow-y: scroll; }
+  
+  body {
     margin: 0;
     padding: 0;
     width: 100%;
-    overflow-x: hidden; /* <--- INI KUNCI MENGHILANGKAN SCROLL HORIZONTAL */
+    overflow-x: hidden; /* Mencegah geser horizontal */
     background-color: #e0f7fa;
   }
 
   * { 
     font-size: 12px; 
-    box-sizing: border-box; /* Memastikan padding tidak menambah lebar elemen */
+    box-sizing: border-box; 
   }
   
+  /* 2. Sidebar Tetap */
   .sidebar { 
     position: fixed; 
     top: 0; 
@@ -36,7 +39,21 @@
   .sidebar a { display: block; padding: 10px 15px; text-decoration: none; color: #333; font-weight: 500; }
   .sidebar a:hover, .sidebar a.active { background: rgba(255,255,255,0.4); border-radius: 5px; }
   
-  /* Gunakan 100vw untuk mengunci lebar tepat sesuai layar */
+  /* 3. Submenu Style (Konsisten & Berjarak) */
+  .submenu-box {
+    padding: 5px 0 10px 15px; 
+    background: rgba(0,0,0,0.05); 
+    border-radius: 4px;
+    margin: 5px 0 10px 0; 
+  }
+
+  .submenu-box a {
+    padding: 6px 10px !important; 
+    margin-bottom: 2px;          
+    font-size: 11px !important;   
+  }
+  
+  /* 4. Main Wrapper: Mengunci area kanan */
   .main-wrapper { 
     margin-left: 200px; 
     padding: 20px; 
@@ -51,19 +68,21 @@
     justify-content: flex-start;
   }
 
+  /* 5. Kartu User: Mengunci ukuran agar tidak gerak-gerak */
   .card { 
-    flex: 0 0 220px; /* <--- PENTING: Mengunci kartu agar tidak ikut melar/menciut */
+    flex: 0 0 220px; 
     width: 220px !important; 
     border: none; 
     box-shadow: 0 2px 5px rgba(0,0,0,0.1); 
     display: flex;
     flex-direction: column;
     height: 320px; 
+    background: #fff;
   }
 
   .card-img-top { 
     height: 180px; 
-    width: 220px; /* Kunci lebar gambar */
+    width: 220px; 
     object-fit: cover; 
     background-color: #f8f9fa; 
     padding: 5px; 
@@ -73,7 +92,7 @@
 </head>
 <body>
 
- <!-- Sidebar -->
+  <!-- Sidebar -->
   <nav class="sidebar">
     <a href="#" class="fw-bold mb-2 d-block" style="pointer-events: none;">💊 GoApotek</a>
     <a href="index.html">🏠 Beranda</a>
@@ -83,7 +102,7 @@
       <i class="bi bi-chevron-down" style="font-size: 0.8rem;"></i>
     </a>
     
-    <div class="collapse show" id="subMenuData" style="padding-left: 15px; background: rgba(0,0,0,0.05); border-radius: 4px;">
+    <div class="collapse show submenu-box" id="subMenuData">
       <a href="dataobat.html">💊 Data Obat</a>
       <a href="dokterpraktek.html">🩺 Dokter Praktek</a>
       <a href="riwayatkunjungan.html">📅 Riwayat Kunjungan</a>
@@ -96,42 +115,51 @@
     <a href="logout.html">🚪 Logout</a>
   </nav>
 
+  <!-- Konten Utama -->
   <main class="main-wrapper">
-    <div class="container">
+    <div class="container-fluid p-0">
       <div class="d-flex justify-content-between align-items-center mb-4">
-        <h2 class="fw-bold mb-4" style="font-size: 16px !important;">User</h2>
+        <h2 class="fw-bold mb-0" style="font-size: 16px !important;">User</h2>
         <a href="tambahuser.html" class="btn btn-primary btn-sm">+ Tambah User</a>
       </div>
       
       <div class="card-container">
         <div class="card">
           <img src="aset/Alisa.jpg" class="card-img-top" alt="Alisa">
-          <div class="card-body">
-            <h6 class="card-title">Alisa</h6>
-            <p class="card-text"><strong>Admin</strong></p>
-            <a href="detailuser1.html" class="btn btn-sm btn-success">Detail</a>
+          <div class="card-body p-2 d-flex flex-column justify-content-between">
+            <div>
+              <h6 class="card-title fw-bold mb-1">Alisa</h6>
+              <p class="card-text text-muted small mb-2"><strong>Admin</strong></p>
+            </div>
+            <a href="detailuser1.html" class="btn btn-sm btn-success w-100">Detail</a>
           </div>
         </div>
+
         <div class="card">
           <img src="aset/Anggota1.jpeg" class="card-img-top" alt="Anggota1">
-          <div class="card-body">
-            <h6 class="card-title">Angellica Br Pinem</h6>
-            <p class="card-text"><strong>Operator 1</strong></p>
-            <a href="detailuser2.html" class="btn btn-sm btn-success">Detail</a>
+          <div class="card-body p-2 d-flex flex-column justify-content-between">
+            <div>
+              <h6 class="card-title fw-bold mb-1">Angellica Br Pinem</h6>
+              <p class="card-text text-muted small mb-2"><strong>Operator 1</strong></p>
+            </div>
+            <a href="detailuser2.html" class="btn btn-sm btn-success w-100">Detail</a>
           </div>
         </div>
+
         <div class="card">
           <img src="aset/Anggota2.jpeg" class="card-img-top" alt="Anggota2">
-          <div class="card-body">
-            <h6 class="card-title">Mutiara Saskia</h6>
-            <p class="card-text"><strong>Operator 2</strong></p>
-            <a href="detailuser3.html" class="btn btn-sm btn-success">Detail</a>
+          <div class="card-body p-2 d-flex flex-column justify-content-between">
+            <div>
+              <h6 class="card-title fw-bold mb-1">Mutiara Saskia</h6>
+              <p class="card-text text-muted small mb-2"><strong>Operator 2</strong></p>
+            </div>
+            <a href="detailuser3.html" class="btn btn-sm btn-success w-100">Detail</a>
           </div>
         </div>
       </div>
     </div>
   </main>
   
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

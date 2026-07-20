@@ -8,16 +8,21 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet"/>
   
   <style>
-    /* Tambahan font universal 12px untuk semua elemen */
-    * { font-size: 12px; }
-    
-    /* Mencegah halaman bergerak/geser ke kiri dan kanan (Anti-Scroll Horizontal) */
-    html, body { 
-      max-width: 100%;
-      overflow-x: hidden;
-      background-color: #e0f7fa; 
-      margin: 0; 
-    }
+     /* Dasar */
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    /* Mengunci agar tidak bisa ditarik/scroll */
+    overflow: hidden;
+    /* Mencegah pergerakan pada perangkat mobile */
+    touch-action: none;
+    /* Properti dasar Anda */
+    background-color: #e0f7fa;
+    font-size: 12px;
+    font-family: system-ui, -apple-system, sans-serif;
+}
     
     /* Sidebar - Menetap Stabil di Kiri */
     .sidebar { position: fixed; top: 0; left: 0; width: 200px; height: 100vh; background-color: #cca8e9; padding: 20px 10px; z-index: 1000; }
@@ -40,6 +45,24 @@
     
     /* Card Formulir Kotak Putih */
     .card { border: none; box-shadow: 0 4px 6px rgba(0,0,0,0.1); border-radius: 10px; background-color: #ffffff; }
+
+       /* Memberi jarak pada kotak submenu */
+    .submenu-box {
+      padding-left: 15px; 
+      padding-top: 5px;    
+      padding-bottom: 10px; 
+      background: rgba(0,0,0,0.05); 
+      border-radius: 4px;
+      margin-bottom: 10px;  
+      margin-top: 5px;      
+    }
+
+    /* Mengatur jarak antar link di dalam submenu */
+    .submenu-box a {
+      padding: 6px 10px !important; 
+      margin-bottom: 2px;          
+      font-size: 11px !important;   
+    }
   </style>
 </head>
 <body>

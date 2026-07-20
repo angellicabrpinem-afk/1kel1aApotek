@@ -7,17 +7,20 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet"/>
   <style>
-     /* Tambahan font universal 12px untuk semua elemen */
-    * { font-size: 12px; }
-    /* RESET & DASAR UTAMA - Sesuai Standar Layout Sistem */
-    html, body {
-      max-width: 100%;
-      overflow-x: hidden;
-      background-color: #e0f7fa; /* Warna Background Ghibli Cyan */
-      margin: 0;
-      font-family: system-ui, -apple-system, sans-serif;
-    }
-    
+    /* Dasar */
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    /* Mengunci agar tidak bisa ditarik/scroll */
+    overflow: hidden;
+    /* Mencegah pergerakan pada perangkat mobile */
+    touch-action: none;
+    /* Properti dasar Anda */
+    background-color: #e0f7fa;
+    font-size: 12px;
+}
     /* Font Ukuran Global Konstan 12px-12px */
     body, p, a, div, h1, h2, h3, h4, h5, h6, table, th, td, button, select, input {
       font-size: 12px !important;
@@ -131,6 +134,24 @@
     }
     .btn-kembali-putih:hover {
       background-color: #f8f9fa;
+    }
+
+       /* Memberi jarak pada kotak submenu */
+    .submenu-box {
+      padding-left: 15px; 
+      padding-top: 5px;    
+      padding-bottom: 10px; 
+      background: rgba(0,0,0,0.05); 
+      border-radius: 4px;
+      margin-bottom: 10px;  
+      margin-top: 5px;      
+    }
+
+    /* Mengatur jarak antar link di dalam submenu */
+    .submenu-box a {
+      padding: 6px 10px !important; 
+      margin-bottom: 2px;          
+      font-size: 11px !important;   
     }
   </style>
 </head>

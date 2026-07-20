@@ -8,10 +8,20 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet"/>
   
   <style>
-  /* Reset agar tidak ada spasi/geser yang tidak perlu */
-  * { font-size: 12px; box-sizing: border-box; }
-
-  body { background-color: #e0f7fa; margin: 0; padding: 0; }
+  /* Dasar */
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    /* Mengunci agar tidak bisa ditarik/scroll */
+    overflow: hidden;
+    /* Mencegah pergerakan pada perangkat mobile */
+    touch-action: none;
+    /* Properti dasar Anda */
+    background-color: #e0f7fa;
+    font-size: 12px;
+}
   
   /* Sidebar */
   .sidebar { position: fixed; top: 0; left: 0; width: 200px; height: 100vh; background-color: #cca8e9; padding: 20px 10px; z-index: 1000; }
