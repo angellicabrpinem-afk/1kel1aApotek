@@ -3,82 +3,100 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Operator - GoApotek</title>
+  <title>Operator 1 - GoApotek</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet"/>
   
-  <style>
-     /* Dasar */
-html, body {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    height: 100%;
-    /* Mengunci agar tidak bisa ditarik/scroll */
-    overflow: hidden;
-    /* Mencegah pergerakan pada perangkat mobile */
-    touch-action: none;
-    /* Properti dasar Anda */
-    background-color: #e0f7fa;
-    font-size: 12px;
-}
+   <style>
+    /* Dasar */
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      touch-action: none;
+      background-color: #e0f7fa;
+      font-size: 12px;
+    }
     
-    /* SIDEBAR (Struktur Asli) */
+    /* Sidebar Tetap (Sama persis dengan index.html) */
     .sidebar { 
-      position: fixed; top: 0; left: 0; 
-      width: 200px; height: 100vh; 
+      position: fixed; 
+      top: 0; 
+      left: 0; 
+      width: 200px; 
+      height: 100vh; 
       background-color: #cca8e9; 
-      padding: 20px 10px; z-index: 1000; 
+      padding: 20px 10px; 
+      z-index: 1000; 
     }
-    .sidebar-logo { font-weight: bold; padding: 10px; margin-bottom: 20px; font-size: 12px !important; }
-    .sidebar a { 
-      display: block; padding: 10px 15px; 
-      text-decoration: none; color: #333; font-weight: 500; font-size: 12px !important; 
+    
+    .sidebar > a { 
+      display: block; 
+      padding: 10px 15px; 
+      text-decoration: none; 
+      color: #333; 
+      font-weight: 500; 
     }
-    .sidebar a:hover, .sidebar a.active { background: rgba(255,255,255,0.4); border-radius: 5px; }
+    
+    .sidebar a:hover, .sidebar a.active { 
+      background: rgba(255,255,255,0.4); 
+      border-radius: 5px; 
+    }
 
-    /* SUB MENU (Sesuai Struktur Asli) */
-    #subMenuData { 
-      padding-left: 15px; 
+    /* Kotak Submenu */
+    .submenu-box {
+      padding: 5px 0 10px 15px; 
       background: rgba(0,0,0,0.05); 
-      border-radius: 4px; 
+      border-radius: 4px;
+      margin: 5px 0 10px 0;      
+    }
+    
+    /* Style Item Submenu */
+    .submenu-box a {
+      padding: 6px 10px !important; 
+      margin: 0 6px 3px 6px !important;         
+      font-size: 11px !important;   
+      font-weight: 500 !important;
+      text-decoration: none !important;
+      color: #333 !important;
+      display: block !important;
+      border-radius: 5px;
+    }
+
+    .submenu-box a:hover, .submenu-box a.active {
+      background: rgba(255,255,255,0.5); 
     }
     
     /* Layout Utama */
-    .main-wrapper { margin-left: 200px; padding: 20px; }
+    .main-wrapper { 
+      margin-left: 200px; 
+      padding: 20px; 
+      width: calc(100vw - 200px); 
+    }
     
-    /* Konten Stabil & Terkunci */
+    /* Konten Admin */
     .operator-main-container { 
-      background: white; padding: 25px; border-radius: 10px; 
+      background: white; 
+      padding: 25px; 
+      border-radius: 10px; 
       box-shadow: 0 4px 6px rgba(0,0,0,0.05); 
       max-width: 900px; 
     }
     
-    /* Foto Full (Contain) */
     .photo-section img { 
-      width: 100%; height: 250px; 
-      object-fit: contain; background: #f8f9fa; border-radius: 8px; 
+      width: 100%; 
+      height: 250px; 
+      object-fit: contain; 
+      background: #f8f9fa; 
+      border-radius: 8px; 
     }
     
-    .info-table { width: 100%; border-collapse: separate; border-spacing: 0 10px; }
-    .info-table td { padding: 5px 10px; vertical-align: top; }
-
-       /* Memberi jarak pada kotak submenu */
-    .submenu-box {
-      padding-left: 15px; 
-      padding-top: 5px;    
-      padding-bottom: 10px; 
-      background: rgba(0,0,0,0.05); 
-      border-radius: 4px;
-      margin-bottom: 10px;  
-      margin-top: 5px;      
-    }
-
-    /* Mengatur jarak antar link di dalam submenu */
-    .submenu-box a {
-      padding: 6px 10px !important; 
-      margin-bottom: 2px;          
-      font-size: 11px !important;   
+    .tugas-list { 
+      list-style-type: none; 
+      padding-left: 0; 
+      margin-bottom: 0; 
     }
   </style>
 </head>
@@ -94,7 +112,7 @@ html, body {
       <i class="bi bi-chevron-down" style="font-size: 0.8rem;"></i>
     </a>
     
-    <div class="collapse show" id="subMenuData">
+    <div class="collapse show submenu-box" id="subMenuData">
       <a href="dataobat.html">💊 Data Obat</a>
       <a href="dokterpraktek.html">🩺 Dokter Praktek</a>
       <a href="riwayatkunjungan.html">📅 Riwayat Kunjungan</a>
@@ -109,7 +127,7 @@ html, body {
 
   <main class="main-wrapper">
     <div class="container-fluid">
-    <h2 class="fw-bold mb-4" style="font-size: 16px !important;">Operator 1</h2>
+    <h2 class="fw-bold mb-4" style="font-size: 16px !important;">Operator 2</h2>
       <div class="operator-main-container">
         <div class="row g-4">
           <div class="col-md-4">
@@ -118,7 +136,7 @@ html, body {
             </div>
           </div>
           <div class="col-md-8">
-            <table class="info-table">
+            <table class="table table-borderless">
               <tr>
                 <td class="fw-bold" style="width: 150px;">Nama Operator</td>
                 <td>: <span class="fw-bold">Angellica Br Pinem</span></td>
@@ -133,7 +151,7 @@ html, body {
               </tr>
               <tr>
                 <td class="fw-bold">Alamat</td>
-                <td>: Jln. kaptenapitupuluh</td>
+                <td>: Jln. KTPnapitupuluh</td>
               </tr>
               <tr>
                 <td class="fw-bold">Kontak</td>
@@ -149,6 +167,6 @@ html, body {
     </div>
   </main>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
