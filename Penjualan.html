@@ -55,8 +55,8 @@
   <!-- Sidebar -->
   <nav class="sidebar">
     <a href="#" class="fw-bold mb-2 d-block" style="pointer-events: none;">💊 GoApotek</a>
-    <a href="index.html">🏠 Beranda</a>
-
+    <a href="index.html">🏠 Beranda Sistem</a>
+    
     <a href="#subMenuData" data-bs-toggle="collapse" class="d-flex justify-content-between align-items-center" aria-expanded="true">
       <span>📁 Data</span><i class="bi bi-chevron-down"></i>
     </a>
@@ -89,20 +89,13 @@
 
   <script>
     const obatList = [
-      { id: 1, nama: 'Paracetamol', harga: 10000, stok: 100, img: 'aset/obat1.jpg' },
-      { id: 2, nama: 'Decolsin', harga: 10000, stok: 150, img: 'aset/decolsin.jpg' },
-      { id: 3, nama: 'Kapsida', harga: 30000, stok: 200, img: 'aset/kapsida.webp' },
-      { id: 4, nama: 'Ibuprofen', harga: 10000, stok: 250, img: 'aset/ibuprofen.png' },
-      { id: 5, nama: 'Amoxicillin', harga: 4000, stok: 50, img: 'aset/amoxicillin.webp' },
-      { id: 6, nama: 'Diazepam', harga: 8000, stok: 20, img: 'aset/Diazepam.jpg' }
+      { id: 1, nama: 'Paracetamol', harga: 10000, stok: 100, img: 'aset/obat1.jpg', deskripsi: 'Obat penurun panas dan pereda nyeri ringan hingga sedang.' },
+      { id: 2, nama: 'Decolsin', harga: 10000, stok: 150, img: 'aset/decolsin.jpg', deskripsi: 'Meredakan gejala flu seperti demam, sakit kepala, hidung tersumbat, dan bersin-bersin.' },
+      { id: 3, nama: 'Kapsida', harga: 30000, stok: 200, img: 'aset/kapsida.webp', deskripsi: 'Membantu meringankan gatal-gatal, bisul, dan membersihkan darah.' },
+      { id: 4, nama: 'Ibuprofen', harga: 10000, stok: 250, img: 'aset/ibuprofen.png', deskripsi: 'Obat antiinflamasi nonsteroid untuk meredakan nyeri dan peradangan.' },
+      { id: 5, nama: 'Amoxicillin', harga: 4000, stok: 50, img: 'aset/amoxicillin.webp', deskripsi: 'Antibiotik golongan penisilin untuk mengatasi berbagai infeksi bakteri.' },
+      { id: 6, nama: 'Diazepam', harga: 8000, stok: 20, img: 'aset/Diazepam.jpg', deskripsi: 'Obat penenang untuk mengatasi kecemasan dan kejang otot.' }
     ];
-
-    let keranjang = JSON.parse(localStorage.getItem("keranjang")) || [];
-
-    function updateBadgeKeranjang() {
-      const totalItem = keranjang.reduce((sum, item) => sum + item.jumlah, 0);
-      document.getElementById("jumlahKeranjang").textContent = totalItem;
-    }
 
     function renderObat(filter = "") {
       const daftarObat = document.getElementById("daftarObat");
@@ -114,7 +107,7 @@
           <div class="card position-relative">
             ${obat.nama === 'Decolsin' ? '<span class="badge-best-seller">BEST SELLER🔥</span>' : ''}
             <div class="card-img-wrapper">
-              <img src="${obat.img}" class="card-img-top" onclick="window.location.href='detailobat.html?id=${obat.id}'" alt="${obat.nama}">
+              <img src="${obat.img}" class="card-img-top" onclick="tampilkanDetail(${obat.id})" alt="${obat.nama}">
             </div>
             <div class="card-body text-center p-2 d-flex flex-column justify-content-between">
               <h6 class="card-title fw-bold mb-1">${obat.nama}</h6>
@@ -130,35 +123,36 @@
       });
     }
 
-    function tambahKeKeranjang(id) {
-      const qtyInput = document.getElementById(`qty-${id}`);
-      const qty = parseInt(qtyInput.value) || 1;
+    function tampilkanDetail(id) {
       const obat = obatList.find(o => o.id === id);
-
       if (!obat) return;
 
-      // Cek apakah obat sudah ada di keranjang
-      const existingIndex = keranjang.findIndex(item => item.id === id);
-      if (existingIndex > -1) {
-        keranjang[existingIndex].jumlah += qty;
-      } else {
-        keranjang.push({
-          id: obat.id,
-          nama: obat.nama,
-          harga: obat.harga,
-          jumlah: qty,
-          img: obat.img
-        });
-      }
+      Swal.fire({
+        title: `<strong>${obat.nama}</strong>`,
+        html: `
+          <div class="text-center">
+            <img src="${obat.img}" style="max-height: 90px; object-fit: contain; margin-bottom: 8px;" class="img-fluid">
+            <p style="font-size: 11px !important; color: #555;">${obat.deskripsi}</p>
+            <hr class="my-2">
+            <div class="d-flex justify-content-around">
+              <div><strong>Harga:</strong> <br>Rp ${obat.harga.toLocaleString()}</div>
+              <div><strong>Stok:</strong> <br>${obat.stok} pcs</div>
+            </div>
+          </div>
+        `,
+        width: '320px',
+        showCloseButton: true,
+        confirmButtonText: 'Tutup',
+        confirmButtonColor: '#198754'
+      });
+    }
 
-      // Simpan ke localStorage agar bisa diakses di halaman prosescheckout.html
-      localStorage.setItem("keranjang", JSON.stringify(keranjang));
-      updateBadgeKeranjang();
-
+    function tambahKeKeranjang(id) {
+      const qty = document.getElementById(`qty-${id}`).value;
       Swal.fire({
         icon: 'success',
         title: 'Berhasil',
-        text: `${obat.nama} berhasil ditambahkan ke keranjang!`,
+        text: `Obat berhasil ditambahkan ke keranjang!`,
         timer: 1500,
         showConfirmButton: false
       });
@@ -168,10 +162,7 @@
       renderObat(e.target.value);
     });
 
-    document.addEventListener("DOMContentLoaded", () => { 
-      renderObat(); 
-      updateBadgeKeranjang();
-    });
+    document.addEventListener("DOMContentLoaded", () => { renderObat(); });
   </script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script> 
 </body>
