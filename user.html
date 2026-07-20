@@ -7,88 +7,124 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
   
-<style>
-  /* 1. Kunci Scrollbar agar posisi layar stabil dan bisa di-scroll vertikal jika panjang */
-  html { overflow-y: scroll; }
-  
-  body {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    overflow-x: hidden; /* Mencegah geser horizontal */
-    background-color: #e0f7fa;
-  }
+  <style>
+    /* Dasar */
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      touch-action: none;
+      background-color: #e0f7fa;
+      font-size: 12px;
+    }
+    
+    /* Sidebar */
+    .sidebar { 
+      position: fixed; 
+      top: 0; 
+      left: 0; 
+      width: 200px; 
+      height: 100vh; 
+      background-color: #cca8e9; 
+      padding: 20px 10px; 
+      z-index: 1000; 
+    }
+    
+    .sidebar > a { 
+      display: block; 
+      padding: 10px 15px; 
+      text-decoration: none; 
+      color: #333; 
+      font-weight: 500; 
+      margin-bottom: 6px; 
+    }
+    
+    .sidebar a:hover, .sidebar a.active { 
+      background: rgba(255,255,255,0.4); 
+      border-radius: 5px; 
+    }
 
-  * { 
-    font-size: 12px; 
-    box-sizing: border-box; 
-  }
-  
-  /* 2. Sidebar Tetap */
-  .sidebar { 
-    position: fixed; 
-    top: 0; 
-    left: 0; 
-    width: 200px; 
-    height: 100vh; 
-    background-color: #cca8e9; 
-    padding: 20px 10px; 
-    z-index: 1000; 
-  }
+    /* Kotak Submenu */
+    .submenu-box {
+      padding-left: 15px; 
+      padding-top: 5px;    
+      padding-bottom: 10px; 
+      background: rgba(0,0,0,0.05); 
+      border-radius: 4px;
+      margin-bottom: 10px;  
+      margin-top: 5px;      
+    }
+    
+    /* Style Item Submenu (Dibuat agak tebal / font-weight: 500) */
+    .submenu-box a {
+      padding: 6px 10px !important; 
+      margin-bottom: 2px !important;          
+      font-size: 11px !important;   
+      font-weight: 500 !important;
+      text-decoration: none !important;
+      color: #333 !important;
+      display: block !important;
+    }
 
-  .sidebar a { display: block; padding: 10px 15px; text-decoration: none; color: #333; font-weight: 500; }
-  .sidebar a:hover, .sidebar a.active { background: rgba(255,255,255,0.4); border-radius: 5px; }
-  
-  /* 3. Submenu Style (Konsisten & Berjarak) */
-  .submenu-box {
-    padding: 5px 0 10px 15px; 
-    background: rgba(0,0,0,0.05); 
-    border-radius: 4px;
-    margin: 5px 0 10px 0; 
-  }
+    .submenu-box a:hover, .submenu-box a.active {
+      background: rgba(255,255,255,0.4); 
+      border-radius: 5px; 
+    }
 
-  .submenu-box a {
-    padding: 6px 10px !important; 
-    margin-bottom: 2px;          
-    font-size: 11px !important;   
-  }
-  
-  /* 4. Main Wrapper: Mengunci area kanan */
-  .main-wrapper { 
-    margin-left: 200px; 
-    padding: 20px; 
-    width: calc(100vw - 200px); 
-    min-height: 100vh;
-  }
-  
-  .card-container { 
-    display: flex; 
-    flex-wrap: wrap; 
-    gap: 20px; 
-    justify-content: flex-start;
-  }
+    .submenu-box a {
+      padding: 6px 10px !important; 
+      margin: 0 6px 3px 6px !important; /* Memberikan jarak kiri-kanan agar kotaknya di tengah */
+      font-size: 11px !important;   
+      font-weight: 500 !important;
+      text-decoration: none !important;
+      color: #333 !important;
+      display: block !important;
+      border-radius: 5px;
+    }
 
-  /* 5. Kartu User: Mengunci ukuran agar tidak gerak-gerak */
-  .card { 
-    flex: 0 0 220px; 
-    width: 220px !important; 
-    border: none; 
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1); 
-    display: flex;
-    flex-direction: column;
-    height: 320px; 
-    background: #fff;
-  }
-
-  .card-img-top { 
-    height: 180px; 
-    width: 220px; 
-    object-fit: cover; 
-    background-color: #f8f9fa; 
-    padding: 5px; 
-    border-bottom: 1px solid #eee;
-  }
-</style>
+    .submenu-box a:hover, .submenu-box a.active {
+      background: rgba(255,255,255,0.5); 
+    }
+    
+    /* Layout Utama Kanan */
+    .main-wrapper { 
+      margin-left: 200px; 
+      padding: 20px; 
+      box-sizing: border-box;
+    }
+    
+    .container { 
+      max-width: 1140px; 
+      width: 100%;
+    }
+    
+    .row {
+      margin-right: 0px;
+      margin-left: 0px;
+    }
+    
+    /* Card User */
+    .card { 
+      border: none; 
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1); 
+      transition: 0.3s; 
+    }
+    
+    .card:hover { 
+      transform: translateY(-5px); 
+      box-shadow: 0 8px 12px rgba(0,0,0,0.15); 
+    }
+    
+    .card-img-top {
+      height: 180px;
+      object-fit: cover;
+      background-color: #f8f9fa;
+      padding: 5px;
+      border-bottom: 1px solid #eee;
+    }
+  </style>
 </head>
 <body>
 
@@ -97,9 +133,8 @@
     <a href="#" class="fw-bold mb-2 d-block" style="pointer-events: none;">💊 GoApotek</a>
     <a href="index.html">🏠 Beranda</a>
     
-    <a href="#subMenuData" data-bs-toggle="collapse" class="d-flex justify-content-between align-items-center">
-      <span>📁 Data</span>
-      <i class="bi bi-chevron-down" style="font-size: 0.8rem;"></i>
+    <a href="#subMenuData" data-bs-toggle="collapse" class="d-flex justify-content-between align-items-center" aria-expanded="true">
+      <span>📁 Data</span><i class="bi bi-chevron-down"></i>
     </a>
     
     <div class="collapse show submenu-box" id="subMenuData">
@@ -115,45 +150,54 @@
     <a href="logout.html">🚪 Logout</a>
   </nav>
 
-  <!-- Konten Utama -->
+  <!-- Konten Utama Halaman User -->
   <main class="main-wrapper">
-    <div class="container-fluid p-0">
+    <div class="container">
       <div class="d-flex justify-content-between align-items-center mb-4">
-        <h2 class="fw-bold mb-0" style="font-size: 16px !important;">User</h2>
+        <h2 class="fw-bold m-0" style="font-size: 16px !important;">User</h2>
         <a href="tambahuser.html" class="btn btn-primary btn-sm">+ Tambah User</a>
       </div>
       
-      <div class="card-container">
-        <div class="card">
-          <img src="aset/Alisa.jpg" class="card-img-top" alt="Alisa">
-          <div class="card-body p-2 d-flex flex-column justify-content-between">
-            <div>
-              <h6 class="card-title fw-bold mb-1">Alisa</h6>
-              <p class="card-text text-muted small mb-2"><strong>Admin</strong></p>
+      <div class="row g-4">
+        <!-- User 1 -->
+        <div class="col-md-4 mb-3">
+          <div class="card h-100">
+            <img src="aset/Alisa.jpg" class="card-img-top" alt="Alisa">
+            <div class="card-body d-flex flex-column justify-content-between">
+              <div>
+                <h6 class="card-title fw-bold">Alisa</h6>
+                <p class="card-text text-muted small mb-2"><strong>Admin</strong></p>
+              </div>
+              <a href="detailuser1.html" class="btn btn-sm btn-success w-100">Detail</a>
             </div>
-            <a href="detailuser1.html" class="btn btn-sm btn-success w-100">Detail</a>
           </div>
         </div>
-
-        <div class="card">
-          <img src="aset/Anggota1.jpeg" class="card-img-top" alt="Anggota1">
-          <div class="card-body p-2 d-flex flex-column justify-content-between">
-            <div>
-              <h6 class="card-title fw-bold mb-1">Angellica Br Pinem</h6>
-              <p class="card-text text-muted small mb-2"><strong>Operator 1</strong></p>
+        
+        <!-- User 2 -->
+        <div class="col-md-4 mb-3">
+          <div class="card h-100">
+            <img src="aset/Anggota1.jpeg" class="card-img-top" alt="Anggota1">
+            <div class="card-body d-flex flex-column justify-content-between">
+              <div>
+                <h6 class="card-title fw-bold">Angellica Br Pinem</h6>
+                <p class="card-text text-muted small mb-2"><strong>Operator 1</strong></p>
+              </div>
+              <a href="detailuser2.html" class="btn btn-sm btn-success w-100">Detail</a>
             </div>
-            <a href="detailuser2.html" class="btn btn-sm btn-success w-100">Detail</a>
           </div>
         </div>
-
-        <div class="card">
-          <img src="aset/Anggota2.jpeg" class="card-img-top" alt="Anggota2">
-          <div class="card-body p-2 d-flex flex-column justify-content-between">
-            <div>
-              <h6 class="card-title fw-bold mb-1">Mutiara Saskia</h6>
-              <p class="card-text text-muted small mb-2"><strong>Operator 2</strong></p>
+        
+        <!-- User 3 -->
+        <div class="col-md-4 mb-3">
+          <div class="card h-100">
+            <img src="aset/Anggota2.jpeg" class="card-img-top" alt="Anggota2">
+            <div class="card-body d-flex flex-column justify-content-between">
+              <div>
+                <h6 class="card-title fw-bold">Mutiara Saskia</h6>
+                <p class="card-text text-muted small mb-2"><strong>Operator 2</strong></p>
+              </div>
+              <a href="detailuser3.html" class="btn btn-sm btn-success w-100">Detail</a>
             </div>
-            <a href="detailuser3.html" class="btn btn-sm btn-success w-100">Detail</a>
           </div>
         </div>
       </div>

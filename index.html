@@ -5,44 +5,53 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Beranda - GoApotek</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/font-bootstrap-icons.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
   
   <style>
-   /* Dasar */
-html, body {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    height: 100%;
-    /* Mengunci agar tidak bisa ditarik/scroll */
-    overflow: hidden;
-    /* Mencegah pergerakan pada perangkat mobile */
-    touch-action: none;
-    /* Properti dasar Anda */
-    background-color: #e0f7fa;
-    font-size: 12px;
-}
+    /* 1. Kunci Layout Stabil */
+    html { overflow-y: scroll; }
+    body { background-color: #e0f7fa; margin: 0; padding: 0; overflow-x: hidden; width: 100%; }
+    * { font-size: 12px; box-sizing: border-box; }
     
-    /* Sidebar - Menetap Stabil di Kiri */
+    /* 2. Sidebar Tetap */
     .sidebar { position: fixed; top: 0; left: 0; width: 200px; height: 100vh; background-color: #cca8e9; padding: 20px 10px; z-index: 1000; }
     .sidebar a { display: block; padding: 10px 15px; text-decoration: none; color: #333; font-weight: 500; }
     .sidebar a:hover, .sidebar a.active { background: rgba(255,255,255,0.4); border-radius: 5px; }
+
+    .sidebar > a { 
+  display: block; 
+  padding: 10px 15px; 
+  text-decoration: none; 
+  color: #333; 
+  font-weight: 500; 
+  margin-bottom: 8px; /* Ini yang bikin Beranda, Data, dan Laporan jadi punya jarak */
+}
     
+    /* 3. Submenu dengan Spacing / Jarak yang Rapi */
     .submenu-box {
-      padding-left: 15px; 
+      padding: 5px 0 10px 15px; 
       background: rgba(0,0,0,0.05); 
       border-radius: 4px;
+      margin: 5px 0 10px 0;      /* Memberikan jarak atas dan bawah kotak */
     }
-    
-    /* Layout Utama Kanan */
+
+    /* Mengatur jarak antar link di dalam submenu */
+    .submenu-box a {
+      padding: 6px 10px !important; 
+      margin-bottom: 2px;          
+      font-size: 11px !important;   
+    }
+
+    /* 4. Layout Utama Kanan */
     .main-wrapper { 
       margin-left: 200px; 
       padding: 20px; 
-      box-sizing: border-box;
+      width: calc(100vw - 200px); 
+      min-height: 100vh;
     }
     .container { max-width: 1140px; width: 100%; }
     
-    /* Card Stat - Layout Fleksibel Kanan-Kiri */
+    /* 5. Card Stat */
     .card-stat { 
       padding: 20px; 
       border-radius: 10px; 
@@ -53,45 +62,30 @@ html, body {
     }
     .card-stat:hover { transform: translateY(-5px); box-shadow: 0 6px 12px rgba(0,0,0,0.1); }
     
-    /* Desain Ikon Stat */
-    .stat-icon {
-      font-size: 24px;
-      opacity: 0.8;
-    }
+    .stat-icon { font-size: 24px; opacity: 0.8; }
 
-       /* Memberi jarak pada kotak submenu */
-    .submenu-box {
-      padding-left: 15px; 
-      padding-top: 5px;    
-      padding-bottom: 10px; 
-      background: rgba(0,0,0,0.05); 
-      border-radius: 4px;
-      margin-bottom: 10px;  
-      margin-top: 5px;      
-    }
-
-    /* Mengatur jarak antar link di dalam submenu */
-    .submenu-box a {
-      padding: 6px 10px !important; 
-      margin-bottom: 2px;          
-      font-size: 11px !important;   
+    .sidebar a { 
+    display: block; 
+    padding: 10px 15px; 
+    text-decoration: none; 
+    color: #333; 
+    font-weight: 500; 
     }
   </style>
 </head>
 <body>
 
-  <!-- Sidebar - Desain Konsisten GoApotek -->
+  <!-- Sidebar -->
   <nav class="sidebar">
     <a href="#" class="fw-bold mb-2 d-block" style="pointer-events: none;">💊 GoApotek</a>
     <a href="index.html" class="active">🏠 Beranda</a>
-
     
     <a href="#subMenuData" data-bs-toggle="collapse" class="d-flex justify-content-between align-items-center">
       <span>📁 Data</span>
       <i class="bi bi-chevron-down" style="font-size: 0.8rem;"></i>
     </a>
     
-    <div class="collapse show" id="subMenuData" style="padding-left: 15px; background: rgba(0,0,0,0.05); border-radius: 4px;">
+    <div class="collapse show submenu-box" id="subMenuData">
       <a href="dataobat.html">💊 Data Obat</a>
       <a href="dokterpraktek.html">🩺 Dokter Praktek</a>
       <a href="riwayatkunjungan.html">📅 Riwayat Kunjungan</a>
