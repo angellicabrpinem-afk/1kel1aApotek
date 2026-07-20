@@ -6,59 +6,36 @@
   <title>Tambah Data User - GoApotek</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet"/>
+  
   <style>
-     /* Tambahan font universal 12px untuk semua elemen */
-    * { font-size: 12px; }
-    /* RESET & DASAR UTAMA - Konsisten dengan Standar Layout GoApotek */
+    /* Dasar */
     html, body {
-      max-width: 100%;
-      overflow-x: hidden;
-      background-color: #e0f7fa; /* Warna Background Ghibli Cyan */
-      /* Mengunci agar tidak bisa ditarik/scroll */
-    overflow: hidden;
-    /* Mencegah pergerakan pada perangkat mobile */
-    touch-action: none;
       margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      /* Mengunci agar tidak bisa ditarik/scroll */
+      overflow: hidden;
+      /* Mencegah pergerakan pada perangkat mobile */
+      touch-action: none;
+      /* Properti dasar Anda */
+      background-color: #e0f7fa;
+      font-size: 12px;
       font-family: system-ui, -apple-system, sans-serif;
     }
     
-    /* Font Ukuran Global Konstan 12px-12px */
-    body, p, a, div, h1, h2, h3, h4, h5, h6, table, th, td, button, select, input, label, textarea {
-      font-size: 12px !important;
-    }
-
-    /* SIDEBAR KIRI - Lebar Tetap Presisi Sesuai Gambar 1 */
-    .sidebar { 
-      position: fixed; 
-      top: 0; 
-      left: 0; 
-      width: 200px; 
-      height: 100vh; 
-      background-color: #cca8e9; /* Warna Ungu Khas */
-      padding: 20px 10px; 
-      z-index: 1000; 
-    }
-
-    .sidebar a { 
-      display: block; 
-      padding: 10px 15px; 
-      text-decoration: none; 
-      color: #333; 
-      font-weight: 500; 
-    }
+    /* Sidebar - Menetap Stabil di Kiri */
+    .sidebar { position: fixed; top: 0; left: 0; width: 200px; height: 100vh; background-color: #cca8e9; padding: 20px 10px; z-index: 1000; }
+    .sidebar a { display: block; padding: 10px 15px; text-decoration: none; color: #333; font-weight: 500; }
+    .sidebar a:hover, .sidebar a.active { background: rgba(255,255,255,0.4); border-radius: 5px; }
     
-    .sidebar a:hover, .sidebar a.active { 
-      background: rgba(255, 255, 255, 0.4); 
-      border-radius: 5px; 
-    }
-
     .submenu-box {
       padding-left: 15px; 
       background: rgba(0,0,0,0.05); 
       border-radius: 4px;
     }
 
-      .submenu-box a {
+    .submenu-box a {
       padding: 6px 10px !important; 
       margin: 0 6px 3px 6px !important; /* Memberikan jarak kiri-kanan agar kotaknya di tengah */
       font-size: 11px !important;   
@@ -72,22 +49,21 @@
     .submenu-box a:hover, .submenu-box a.active {
       background: rgba(255,255,255,0.5); 
     }
-    /* AREA KONTEN SEBELAH KANAN SIDEBAR */
-    .main-content-wrapper { 
+    
+    /* Layout Utama Kanan - Mengunci pergeseran layout */
+    .main-wrapper { 
       margin-left: 200px; 
-      padding: 40px; 
-      min-height: 100vh;
+      padding: 20px; 
+      box-sizing: border-box;
+      height: 100vh;
+      overflow-y: auto;
     }
+    .container { max-width: 1140px; width: 100%; padding-bottom: 40px; }
+    
+    /* Card Formulir Kotak Putih */
+    .card { border: none; box-shadow: 0 4px 6px rgba(0,0,0,0.1); border-radius: 10px; background-color: #ffffff; }
 
-    /* KOTAK PUTIH UTAMA (Card-Box Form Konten) */
-    .container-box {
-      background: #ffffff;
-      padding: 30px;
-      border-radius: 12px;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.03);
-    }
-
-       /* Memberi jarak pada kotak submenu */
+    /* Memberi jarak pada kotak submenu */
     .submenu-box {
       padding-left: 15px; 
       padding-top: 5px;    
@@ -101,24 +77,23 @@
     /* Mengatur jarak antar link di dalam submenu */
     .submenu-box a {
       padding: 6px 10px !important; 
-      margin-bottom: 2px;          
+      margin-bottom: 2px;         
       font-size: 11px !important;   
     }
   </style>
 </head>
 <body>
 
- <!-- Sidebar -->
+  <!-- Sidebar - Desain Konsisten GoApotek -->
   <nav class="sidebar">
     <a href="#" class="fw-bold mb-2 d-block" style="pointer-events: none;">💊 GoApotek</a>
     <a href="index.html">🏠 Beranda</a>
     
-    <a href="#subMenuData" data-bs-toggle="collapse" class="d-flex justify-content-between align-items-center">
-      <span>📁 Data</span>
-      <i class="bi bi-chevron-down" style="font-size: 0.8rem;"></i>
+    <a href="#subMenuData" data-bs-toggle="collapse" class="d-flex justify-content-between align-items-center" aria-expanded="true">
+      <span>📁 Data</span><i class="bi bi-chevron-down"></i>
     </a>
     
-    <div class="collapse show" id="subMenuData" style="padding-left: 15px; background: rgba(0,0,0,0.05); border-radius: 4px;">
+    <div class="collapse show submenu-box" id="subMenuData">
       <a href="dataobat.html">💊 Data Obat</a>
       <a href="dokterpraktek.html">🩺 Dokter Praktek</a>
       <a href="riwayatkunjungan.html">📅 Riwayat Kunjungan</a>
@@ -131,15 +106,15 @@
     <a href="logout.html">🚪 Logout</a>
   </nav>
 
-
-  <!-- KONTEN AREA UTAMA SEBELAH KANAN SIDEBAR -->
-  <main class="main-content-wrapper">
-    <div class="container-fluid p-0">
+  <!-- Konten Utama Halaman -->
+  <main class="main-wrapper">
+    <div class="container">
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="fw-bold m-0" style="font-size: 16px !important;">Tambah Data User</h2>
+        <a href="user.html" class="btn btn-outline-secondary">🔙 Kembali</a>
+      </div>
       
-      <h4 class="fw-bold mb-4" style="font-size: 18px !important;">Tambah Data User</h4>
-
-      <!-- Bungkus Form dengan Kotak Putih Melayang Standar Sistem -->
-      <div class="container-box">
+      <div class="card p-4">
         <form
           id="form_user"
           action="simpan_user.php"
@@ -149,7 +124,7 @@
         >
           <div class="row g-3">
             <div class="col-md-6">
-              <label for="nama_lengkap" class="form-label fw-bold">Nama Lengkap</label>
+              <label for="nama_lengkap" class="form-label fw-semibold">Nama Lengkap</label>
               <input
                 id="nama_lengkap"
                 name="nama_lengkap"
@@ -162,7 +137,7 @@
             </div>
             
             <div class="col-md-6">
-              <label for="username" class="form-label fw-bold">Username</label>
+              <label for="username" class="form-label fw-semibold">Username</label>
               <input
                 id="username"
                 name="username"
@@ -175,7 +150,7 @@
             </div>
 
             <div class="col-md-6">
-              <label for="password" class="form-label fw-bold">Password</label>
+              <label for="password" class="form-label fw-semibold">Password</label>
               <input
                 id="password"
                 name="password"
@@ -188,14 +163,14 @@
             </div>
 
             <div class="col-md-6">
-              <label for="role" class="form-label fw-bold">Hak Akses</label>
+              <label for="role" class="form-label fw-semibold">Hak Akses</label>
               <select id="role" name="role" class="form-select">
                 <option value="Admin">Admin</option>
               </select>
             </div>
 
             <div class="col-md-6">
-              <label for="no_hp" class="form-label fw-bold">Nomor WhatsApp/HP</label>
+              <label for="no_hp" class="form-label fw-semibold">Nomor WhatsApp/HP</label>
               <input
                 id="no_hp"
                 name="no_hp"
@@ -206,7 +181,7 @@
             </div>
 
             <div class="col-md-6">
-              <label for="status_user" class="form-label fw-bold">Status Akun</label>
+              <label for="status_user" class="form-label fw-semibold">Status Akun</label>
               <select id="status_user" name="status_user" class="form-select">
                 <option value="Aktif">Aktif</option>
                 <option value="Nonaktif">Nonaktif</option>
@@ -214,7 +189,7 @@
             </div>
 
             <div class="col-12">
-              <label for="alamat" class="form-label fw-bold">Alamat Rumah</label>
+              <label for="alamat" class="form-label fw-semibold">Alamat Rumah</label>
               <textarea
                 id="alamat"
                 name="alamat"
@@ -225,13 +200,9 @@
             </div>
           </div>
           
-          <div class="mt-4 d-flex gap-2">
-            <button type="submit" class="btn btn-success px-4 fw-bold">Simpan User</button>
-            <a href="user.html" class="btn btn-secondary px-4">Kembali</a>
-          </div>
+          <button type="submit" class="btn btn-success mt-4">Simpan User</button>
         </form>
       </div>
-
     </div>
   </main>
 
