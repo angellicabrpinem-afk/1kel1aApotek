@@ -8,83 +8,70 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet"/>
   
   <style>
-    /* Dasar */
-html, body {
+  /* Dasar */
+  html, body {
     margin: 0;
     padding: 0;
     width: 100%;
     height: 100%;
-    /* Mengunci agar tidak bisa ditarik/scroll */
-    overflow: hidden;
-    /* Mencegah pergerakan pada perangkat mobile */
-    touch-action: none;
-    /* Properti dasar Anda */
     background-color: #e0f7fa;
     font-size: 12px;
-}
-    
-    /* Sidebar - SAMA PERSIS DENGAN HARIAN (Fixed width, tidak berubah) */
-    .sidebar { position: fixed; top: 0; left: 0; width: 200px; height: 100vh; background-color: #cca8e9; padding: 20px 10px; z-index: 1000; }
-    .sidebar a { display: block; padding: 10px 15px; text-decoration: none; color: #333; font-weight: 500; }
-    .sidebar a:hover, .sidebar a.active { background: rgba(255,255,255,0.4); border-radius: 5px; }
-    
-    /* Layout Utama - SAMA PERSIS (Margin kiri 200px agar tidak bergeser) */
-    .main-wrapper { margin-left: 200px; padding: 20px; }
-    
-    /* Card/Container - Dibatasi agar tidak melebar/bisa ditarik */
-    .container { max-width: 900px; margin-left: 0; } 
-    
-    .table-container { background: white; padding: 20px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
-    
-    /* ------------------------------------------------------------------ */
-    /* ATURAN PERFECT PRINT: FIX SIDEBAR HILANG & KONTEN RATAKIRI PENUH */
-    /* ------------------------------------------------------------------ */
-    @media print { 
-      /* Sembunyikan semua komponen navigasi, tombol, dan sidebar penanda */
-      .no-print, .sidebar, nav, .btn, a.btn { 
-        display: none !important; 
-      } 
-      
-      /* Geser penuh kontainer ke tepi kiri halaman cetak */
-      .main-wrapper { 
-        margin-left: 0 !important; 
-        padding: 0 !important; 
-      }
+  }
+  
+  /* Sidebar */
+  .sidebar { position: fixed; top: 0; left: 0; width: 200px; height: 100vh; background-color: #cca8e9; padding: 20px 10px; z-index: 1000; }
+  .sidebar > a { display: block; padding: 10px 15px; text-decoration: none; color: #333; font-weight: 500; }
+  .sidebar a:hover, .sidebar a.active { background: rgba(255,255,255,0.4); border-radius: 5px; }
 
-      /* Paksa agar kontainer data melebar 100% mengikuti ukuran lebar kertas */
-      .container {
-        max-width: 100% !important;
-        width: 100% !important;
-      }
+  /* Submenu Style */
+  .submenu-box { padding: 5px 0 10px 15px; background: rgba(0,0,0,0.05); border-radius: 4px; margin: 5px 0 10px 0; }
+  .submenu-box a {
+    padding: 6px 10px !important; 
+    margin: 0 6px 3px 6px !important; 
+    font-size: 11px !important;   
+    font-weight: 500 !important;
+    text-decoration: none !important;
+    color: #333 !important;
+    display: block !important;
+    border-radius: 5px;
+  }
 
-      /* Kembalikan warna dasar putih polos agar bersih dari warna latar aplikasi */
-      body {
-        background-color: #ffffff !important;
-      }
+  .submenu-box a:hover, .submenu-box a.active {
+    background: rgba(255,255,255,0.5); 
+  }
+  
+  /* Main Wrapper */
+  .main-wrapper { 
+    margin-left: 200px; 
+    padding: 30px; 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+  }
 
-      .table-container {
-        box-shadow: none !important;
-        padding: 0 !important;
-      }
+  /* Membatasi lebar konten agar tidak melar ke samping */
+  .header-kop, .d-flex, .table-responsive, .row {
+    width: 100%;
+    max-width: 800px;
+  }
+  
+  /* Aturan Cetak (Print) */
+  @media print { 
+    @page { size: A4; margin: 1.5cm; } 
+    
+    .sidebar, .no-print { display: none !important; } 
+    
+    .main-wrapper { 
+      margin-left: 0 !important; 
+      padding: 0 !important; 
+      width: 100% !important;
     }
 
-       /* Memberi jarak pada kotak submenu */
-    .submenu-box {
-      padding-left: 15px; 
-      padding-top: 5px;    
-      padding-bottom: 10px; 
-      background: rgba(0,0,0,0.05); 
-      border-radius: 4px;
-      margin-bottom: 10px;  
-      margin-top: 5px;      
-    }
+    body { background-color: #ffffff !important; }
 
-    /* Mengatur jarak antar link di dalam submenu */
-    .submenu-box a {
-      padding: 6px 10px !important; 
-      margin-bottom: 2px;          
-      font-size: 11px !important;   
-    }
+    .table-responsive { overflow: visible !important; }
+    .table { width: 100% !important; table-layout: fixed; }
+  }
   </style>
 </head>
 <body>
@@ -99,7 +86,7 @@ html, body {
       <i class="bi bi-chevron-down" style="font-size: 0.8rem;"></i>
     </a>
     
-    <div class="collapse show" id="subMenuData" style="padding-left: 15px; background: rgba(0,0,0,0.05); border-radius: 4px;">
+    <div class="collapse show submenu-box" id="subMenuData">
       <a href="dataobat.html">💊 Data Obat</a>
       <a href="dokterpraktek.html">🩺 Dokter Praktek</a>
       <a href="riwayatkunjungan.html">📅 Riwayat Kunjungan</a>
@@ -113,63 +100,58 @@ html, body {
   </nav>
 
   <main class="main-wrapper">
-    <div class="container">
-      
-      <!-- Kop Surat yang Muncul Otomatis Khusus di Lembar Cetak Kertas -->
-      <div class="text-center mb-4 d-none d-print-block">
-        <h3 class="fw-bold" style="font-size: 16px !important; margin-bottom: 2px;">APOTEK GO-APOTEK</h3>
-        <p class="text-muted" style="margin-bottom: 0;">Jl. Kesehatan No. 123, Kota Anda | Telp: (021) 1234567</p>
-      </div>
+    <div class="header-kop text-center" style="max-width: 800px;">
+      <h1 class="fw-bold mb-1" style="font-size: 16px !important;">APOTEK GO-APOTEK</h1>
+      <p class="text-muted mb-0">Jl. Kesehatan No. 123, Kota Anda | Telp: (021) 1234567</p>
+    </div>
 
-      <div class="d-flex justify-content-between align-items-center mb-3 no-print">
-        <h2 class="fw-bold m-0" style="font-size: 16px !important;">Detail Penjualan Minggu Ini</h2>
-        <div class="d-flex gap-2">
-          <a href="laporan.html" class="btn btn-secondary">🔙 Kembali</a>
-          <button onclick="window.print()" class="btn btn-primary">🖨️ Cetak</button>
-        </div>
+    <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2" style="max-width: 800px;">
+      <h4 class="fw-bold m-0" style="font-size: 16px !important;">Detail Penjualan Minggu Ini</h4>
+      <div class="d-flex gap-2 no-print">
+        <a href="laporan.html" class="btn btn-secondary btn-sm">Kembali</a>
+        <button onclick="window.print()" class="btn btn-primary btn-sm">🖨️ Cetak Laporan</button>
       </div>
+    </div>
 
-      <p class="mb-3">📅 Periode: <strong>1 Juni – 7 Juni 2026</strong></p>
+    <p class="text-muted mb-2">📅 Periode: <strong>1 Juni – 7 Juni 2026</strong></p>
 
-      <div class="table-container">
-        <table class="table table-bordered table-hover align-middle">
-          <thead class="table-light">
-            <tr>
-              <th>Hari</th>
-              <th>Total Transaksi</th>
-              <th>Jumlah Item</th>
-              <th>Pendapatan</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr><td>Senin</td><td>10</td><td>200</td><td>Rp 2.000.000</td></tr>
-            <tr><td>Selasa</td><td>20</td><td>105</td><td>Rp 1.050.000</td></tr>
-            <tr><td>Rabu</td><td>15</td><td>110</td><td>Rp 1.110.000</td></tr>
-            <tr><td>Kamis</td><td>25</td><td>335</td><td>Rp 3.350.000</td></tr>
-            <tr><td>Jumat</td><td>35</td><td>125</td><td>Rp 125.000</td></tr>
-            <tr><td>Sabtu</td><td>30</td><td>30</td><td>Rp 900.000</td></tr>
-            <tr><td>Minggu</td><td>45</td><td>100</td><td>Rp 1.000.000</td></tr>
-            <tr class="fw-bold table-active">
-              <td colspan="3" class="text-end">Total Pendapatan</td>
-              <td>Rp 9.435.000</td>
-            </tr>
-          </tbody>
-        </table>
+    <div class="table-responsive">
+      <table class="table table-bordered table-hover bg-white align-middle">
+        <thead class="table-success">
+          <tr>
+            <th>Hari</th>
+            <th>Total Transaksi</th>
+            <th>Jumlah Item</th>
+            <th>Pendapatan</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Senin</td><td>10</td><td>200</td><td>Rp 2.000.000</td></tr>
+          <tr><td>Selasa</td><td>20</td><td>105</td><td>Rp 1.050.000</td></tr>
+          <tr><td>Rabu</td><td>15</td><td>110</td><td>Rp 1.110.000</td></tr>
+          <tr><td>Kamis</td><td>25</td><td>335</td><td>Rp 3.350.000</td></tr>
+          <tr><td>Jumat</td><td>35</td><td>125</td><td>Rp 125.000</td></tr>
+          <tr><td>Sabtu</td><td>30</td><td>30</td><td>Rp 900.000</td></tr>
+          <tr><td>Minggu</td><td>45</td><td>100</td><td>Rp 1.000.000</td></tr>
+          <tr class="fw-bold table-secondary">
+            <td colspan="3" class="text-end">Total Pendapatan</td>
+            <td>Rp 9.435.000</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="row mt-5" style="max-width: 800px;">
+      <div class="col-8"></div>
+      <div class="col-4 text-center">
+        <p class="mb-1">Jakarta, 7 Juni 2026</p>
+        <p>Kepala Apotek,</p>
+        <br><br>
+        <p><strong>( _________________ )</strong></p>
       </div>
-
-      <div class="row mt-4">
-        <div class="col-8"></div>
-        <div class="col-4 text-center">
-          <p class="mb-1">Jakarta, 7 Juni 2026</p>
-          <p>Kepala Apotek,</p>
-          <br><br><br>
-          <p class="fw-bold">( _________________ )</p>
-        </div>
-      </div>
-      
     </div>
   </main>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

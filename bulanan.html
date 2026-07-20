@@ -9,86 +9,70 @@
   
   <style>
   /* Dasar */
-html, body {
+  html, body {
     margin: 0;
     padding: 0;
     width: 100%;
     height: 100%;
-    /* Mengunci agar tidak bisa ditarik/scroll */
-    overflow: hidden;
-    /* Mencegah pergerakan pada perangkat mobile */
-    touch-action: none;
-    /* Properti dasar Anda */
     background-color: #e0f7fa;
     font-size: 12px;
-}
-
-  body { background-color: #e0f7fa; margin: 0; padding: 0; }
+  }
   
-  /* Sidebar tetap */
+  /* Sidebar */
   .sidebar { position: fixed; top: 0; left: 0; width: 200px; height: 100vh; background-color: #cca8e9; padding: 20px 10px; z-index: 1000; }
-  .sidebar a { display: block; padding: 10px 15px; text-decoration: none; color: #333; font-weight: 500; }
+  .sidebar > a { display: block; padding: 10px 15px; text-decoration: none; color: #333; font-weight: 500; }
   .sidebar a:hover, .sidebar a.active { background: rgba(255,255,255,0.4); border-radius: 5px; }
+
+  /* Submenu Style */
+  .submenu-box { padding: 5px 0 10px 15px; background: rgba(0,0,0,0.05); border-radius: 4px; margin: 5px 0 10px 0; }
+  .submenu-box a {
+    padding: 6px 10px !important; 
+    margin: 0 6px 3px 6px !important; 
+    font-size: 11px !important;   
+    font-weight: 500 !important;
+    text-decoration: none !important;
+    color: #333 !important;
+    display: block !important;
+    border-radius: 5px;
+  }
+
+  .submenu-box a:hover, .submenu-box a.active {
+    background: rgba(255,255,255,0.5); 
+  }
   
-  /* Main Wrapper: Memaksa konten tetap di tengah layar */
+  /* Main Wrapper */
   .main-wrapper { 
     margin-left: 200px; 
     padding: 30px; 
     display: flex; 
-    justify-content: center; /* Menjaga konten utama di tengah */
+    flex-direction: column; 
+    align-items: center; 
   }
 
-  .container-fluid { 
-    max-width: 900px; 
-    width: 100%; 
+  /* Membatasi lebar konten agar tidak melar ke samping */
+  .header-kop, .d-flex, .table-responsive, .row {
+    width: 100%;
+    max-width: 800px;
   }
-
-  .table-container { background: white; padding: 20px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
-
-  /* ------------------------------------------------------------------ */
-  /* ATURAN PRINT: Kunci Posisi & Margin */
-  /* ------------------------------------------------------------------ */
+  
+  /* Aturan Cetak (Print) */
   @media print { 
-    @page { size: A4; margin: 1.5cm; } /* Margin kertas fisik agar tidak mepet */
+    @page { size: A4; margin: 1.5cm; } 
     
     .sidebar, .no-print { display: none !important; } 
     
     .main-wrapper { 
       margin-left: 0 !important; 
       padding: 0 !important; 
-      display: block !important;
+      width: 100% !important;
     }
 
     body { background-color: #ffffff !important; }
 
-    .table-container { 
-      box-shadow: none !important; 
-      padding: 0 !important; 
-      border: none !important;
-    }
-
-    /* Memastikan tabel tidak melampaui lebar kertas */
+    .table-responsive { overflow: visible !important; }
     .table { width: 100% !important; table-layout: fixed; }
   }
-
-     /* Memberi jarak pada kotak submenu */
-    .submenu-box {
-      padding-left: 15px; 
-      padding-top: 5px;    
-      padding-bottom: 10px; 
-      background: rgba(0,0,0,0.05); 
-      border-radius: 4px;
-      margin-bottom: 10px;  
-      margin-top: 5px;      
-    }
-
-    /* Mengatur jarak antar link di dalam submenu */
-    .submenu-box a {
-      padding: 6px 10px !important; 
-      margin-bottom: 2px;          
-      font-size: 11px !important;   
-    }
-</style>
+  </style>
 </head>
 <body>
 
@@ -102,7 +86,7 @@ html, body {
       <i class="bi bi-chevron-down" style="font-size: 0.8rem;"></i>
     </a>
     
-    <div class="collapse show" id="subMenuData" style="padding-left: 15px; background: rgba(0,0,0,0.05); border-radius: 4px;">
+    <div class="collapse show submenu-box" id="subMenuData">
       <a href="dataobat.html">💊 Data Obat</a>
       <a href="dokterpraktek.html">🩺 Dokter Praktek</a>
       <a href="riwayatkunjungan.html">📅 Riwayat Kunjungan</a>
@@ -116,64 +100,58 @@ html, body {
   </nav>
 
   <main class="main-wrapper">
-    <div class="container-fluid" style="max-width: 900px; padding: 0;">
-      
-      <!-- Judul Dokumen (Akan tampil saat diprint) -->
-      <div class="text-center mb-4">
-        <h1 class="fw-bold mb-1" style="font-size: 16px !important;">APOTEK GO-APOTEK</h1>
-        <p class="text-muted mb-0">Jl. Kesehatan No. 123, Kota Anda | Telp: (021) 1234567</p>
-      </div>
+    <div class="header-kop text-center" style="max-width: 800px;">
+      <h1 class="fw-bold mb-1" style="font-size: 16px !important;">APOTEK GO-APOTEK</h1>
+      <p class="text-muted mb-0">Jl. Kesehatan No. 123, Kota Anda | Telp: (021) 1234567</p>
+    </div>
 
-      <div class="d-flex justify-content-between align-items-center mb-3">
-        <h2 class="fw-bold m-0" style="font-size: 16px !important;">Detail Penjualan Bulan Ini</h2>
-        <!-- Class no-print agar tombol hilang saat dicetak -->
-        <div class="d-flex gap-2 no-print">
-          <a href="laporan.html" class="btn btn-secondary">🔙 Kembali</a>
-          <button onclick="window.print()" class="btn btn-primary">🖨️ Cetak</button>
-        </div>
+    <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2" style="max-width: 800px;">
+      <h4 class="fw-bold m-0" style="font-size: 16px !important;">Detail Penjualan Bulan Ini</h4>
+      <div class="d-flex gap-2 no-print">
+        <a href="laporan.html" class="btn btn-secondary btn-sm">Kembali</a>
+        <button onclick="window.print()" class="btn btn-primary btn-sm">🖨️ Cetak Laporan</button>
       </div>
+    </div>
 
-      <p class="mb-3">📅 Periode: <strong>1 Juni – 30 Juni 2026</strong></p>
+    <p class="text-muted mb-2">📅 Periode: <strong>1 Juni – 30 Juni 2026</strong></p>
 
-      <div class="table-container">
-        <table class="table table-bordered table-hover align-middle">
-          <thead class="table-light">
-            <tr>
-              <th>Hari</th>
-              <th>Total Transaksi</th>
-              <th>Jumlah Item Terjual</th>
-              <th>Jumlah Pendapatan</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr><td>Senin</td><td>15</td><td>180</td><td>Rp 2.800.000</td></tr>
-            <tr><td>Selasa</td><td>12</td><td>950</td><td>Rp 2.950.000</td></tr>
-            <tr><td>Rabu</td><td>14</td><td>110</td><td>Rp 3.100.000</td></tr>
-            <tr><td>Kamis</td><td>18</td><td>190</td><td>Rp 1.900.000</td></tr>
-            <tr><td>Jumat</td><td>17</td><td>125</td><td>Rp 2.850.000</td></tr>
-            <tr><td>Sabtu</td><td>10</td><td>100</td><td>Rp 1.000.000</td></tr>
-            <tr><td>Minggu</td><td>11</td><td>105</td><td>Rp 3.400.000</td></tr>
-            <tr class="fw-bold table-active">
-              <td colspan="3" class="text-end">Total Pendapatan Bulan Ini</td>
-              <td>Rp 18.000.000</td>
-            </tr>
-          </tbody>
-        </table>
+    <div class="table-responsive">
+      <table class="table table-bordered table-hover bg-white align-middle">
+        <thead class="table-success">
+          <tr>
+            <th>Hari</th>
+            <th>Total Transaksi</th>
+            <th>Jumlah Item Terjual</th>
+            <th>Jumlah Pendapatan</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Senin</td><td>15</td><td>180</td><td>Rp 2.800.000</td></tr>
+          <tr><td>Selasa</td><td>12</td><td>950</td><td>Rp 2.950.000</td></tr>
+          <tr><td>Rabu</td><td>14</td><td>110</td><td>Rp 3.100.000</td></tr>
+          <tr><td>Kamis</td><td>18</td><td>190</td><td>Rp 1.900.000</td></tr>
+          <tr><td>Jumat</td><td>17</td><td>125</td><td>Rp 2.850.000</td></tr>
+          <tr><td>Sabtu</td><td>10</td><td>100</td><td>Rp 1.000.000</td></tr>
+          <tr><td>Minggu</td><td>11</td><td>105</td><td>Rp 3.400.000</td></tr>
+          <tr class="fw-bold table-secondary">
+            <td colspan="3" class="text-end">Total Pendapatan Bulan Ini</td>
+            <td>Rp 18.000.000</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="row mt-5" style="max-width: 800px;">
+      <div class="col-8"></div>
+      <div class="col-4 text-center">
+        <p class="mb-1">Jakarta, 30 Juni 2026</p>
+        <p>Kepala Apotek,</p>
+        <br><br>
+        <p><strong>( _________________ )</strong></p>
       </div>
-
-      <div class="row mt-5">
-        <div class="col-8"></div>
-        <div class="col-4 text-center">
-          <p class="mb-1">Jakarta, 30 Juni 2026</p>
-          <p>Kepala Apotek,</p>
-          <br><br><br>
-          <p class="fw-bold">( _________________ )</p>
-        </div>
-      </div>
-      
     </div>
   </main>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
