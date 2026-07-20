@@ -3,58 +3,44 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Beranda - GoApotek</title>
+  <title>Beranda • GoApotek</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
   
   <style>
-    /* 1. Kunci Layout Stabil */
-    html { overflow-y: scroll; }
-    body { background-color: #e0f7fa; margin: 0; padding: 0; overflow-x: hidden; width: 100%; }
+    /* 1. Reset Universal & Lock Layar */
     * { font-size: 12px; box-sizing: border-box; }
-    
+    html, body { background-color: #e0f7fa; margin: 0; padding: 0; width: 100%; overflow-x: hidden; }
+
     /* 2. Sidebar Tetap */
     .sidebar { position: fixed; top: 0; left: 0; width: 200px; height: 100vh; background-color: #cca8e9; padding: 20px 10px; z-index: 1000; }
-    .sidebar a { display: block; padding: 10px 15px; text-decoration: none; color: #333; font-weight: 500; }
+    .sidebar > a { display: block; padding: 10px 15px; text-decoration: none; color: #333; font-weight: 500; }
     .sidebar a:hover, .sidebar a.active { background: rgba(255,255,255,0.4); border-radius: 5px; }
 
-    .sidebar > a { 
-  display: block; 
-  padding: 10px 15px; 
-  text-decoration: none; 
-  color: #333; 
-  font-weight: 500; 
-  margin-bottom: 8px; /* Ini yang bikin Beranda, Data, dan Laporan jadi punya jarak */
-}
-    
-    /* 3. Submenu dengan Spacing / Jarak yang Rapi */
-    .submenu-box {
-      padding: 5px 0 10px 15px; 
-      background: rgba(0,0,0,0.05); 
-      border-radius: 4px;
-      margin: 5px 0 10px 0;      /* Memberikan jarak atas dan bawah kotak */
-    }
-
-    /* Mengatur jarak antar link di dalam submenu */
+    /* 3. Submenu Style (Konsisten dengan Penjualan) */
+    .submenu-box { padding: 5px 0 10px 15px; background: rgba(0,0,0,0.05); border-radius: 4px; margin: 5px 0 10px 0; }
     .submenu-box a {
       padding: 6px 10px !important; 
-      margin-bottom: 2px;          
+      margin: 0 6px 3px 6px !important; 
       font-size: 11px !important;   
+      font-weight: 500 !important;
+      text-decoration: none !important;
+      color: #333 !important;
+      display: block !important;
+      border-radius: 5px;
     }
 
-    /* 4. Layout Utama Kanan */
-    .main-wrapper { 
-      margin-left: 200px; 
-      padding: 20px; 
-      width: calc(100vw - 200px); 
-      min-height: 100vh;
+    .submenu-box a:hover, .submenu-box a.active {
+      background: rgba(255,255,255,0.5); 
     }
-    .container { max-width: 1140px; width: 100%; }
+
+    /* 4. Main Wrapper */
+    .main-wrapper { margin-left: 200px; padding: 20px; width: calc(100vw - 200px); }
     
     /* 5. Card Stat */
     .card-stat { 
       padding: 20px; 
-      border-radius: 10px; 
+      border-radius: 12px; 
       border: none; 
       box-shadow: 0 4px 6px rgba(0,0,0,0.05); 
       transition: 0.3s; 
@@ -63,14 +49,6 @@
     .card-stat:hover { transform: translateY(-5px); box-shadow: 0 6px 12px rgba(0,0,0,0.1); }
     
     .stat-icon { font-size: 24px; opacity: 0.8; }
-
-    .sidebar a { 
-    display: block; 
-    padding: 10px 15px; 
-    text-decoration: none; 
-    color: #333; 
-    font-weight: 500; 
-    }
   </style>
 </head>
 <body>
@@ -79,12 +57,9 @@
   <nav class="sidebar">
     <a href="#" class="fw-bold mb-2 d-block" style="pointer-events: none;">💊 GoApotek</a>
     <a href="index.html" class="active">🏠 Beranda</a>
-    
     <a href="#subMenuData" data-bs-toggle="collapse" class="d-flex justify-content-between align-items-center">
-      <span>📁 Data</span>
-      <i class="bi bi-chevron-down" style="font-size: 0.8rem;"></i>
+      <span>📁 Data</span><i class="bi bi-chevron-down"></i>
     </a>
-    
     <div class="collapse show submenu-box" id="subMenuData">
       <a href="dataobat.html">💊 Data Obat</a>
       <a href="dokterpraktek.html">🩺 Dokter Praktek</a>
@@ -93,17 +68,16 @@
       <a href="Penjualan.html">🛒 Penjualan</a>
       <a href="user.html">🧑‍🧒‍🧒 User</a>
     </div>
-
     <a href="laporan.html">📈 Laporan</a>
     <a href="logout.html">🚪 Logout</a>
   </nav>
 
   <!-- Konten Utama -->
   <main class="main-wrapper">
-    <div class="container">
+    <div class="container-fluid">
       <h2 class="fw-bold mb-4" style="font-size: 16px !important;">Beranda</h2>
 
-      <div class="row g-4">
+      <div class="row g-3">
         <!-- Card 1: Total Obat -->
         <div class="col-md-4">
           <a href="dataobat.html" class="text-decoration-none text-dark">
