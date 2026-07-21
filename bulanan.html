@@ -20,7 +20,7 @@
   
   /* Sidebar */
   .sidebar { position: fixed; top: 0; left: 0; width: 200px; height: 100vh; background-color: #cca8e9; padding: 20px 10px; z-index: 1000; }
-  .sidebar > a { display: block; padding: 10px 15px; text-decoration: none; color: #333; font-weight: 500; }
+  .sidebar a { display: block; padding: 10px 15px; text-decoration: none; color: #333; font-weight: 500; }
   .sidebar a:hover, .sidebar a.active { background: rgba(255,255,255,0.4); border-radius: 5px; }
 
   /* Submenu Style */
@@ -78,14 +78,12 @@
 
   <!-- Sidebar -->
   <nav class="sidebar">
-    <a href="#" class="fw-bold mb-2 d-block" style="pointer-events: none;">💊 GoApotek</a>
+    <a href="#" class="fw-bold mb-2 d-block" style="pointer-events: none; font-size: 20px;">🍀 GoApotek</a>
     <a href="index.html">🏠 Beranda</a>
-    
-    <a href="#subMenuData" data-bs-toggle="collapse" class="d-flex justify-content-between align-items-center">
-      <span>📁 Data</span>
-      <i class="bi bi-chevron-down" style="font-size: 0.8rem;"></i>
+
+    <a href="#subMenuData" data-bs-toggle="collapse" class="d-flex justify-content-between align-items-center" aria-expanded="true">
+      <span>📁 Data</span><i class="bi bi-chevron-down"></i>
     </a>
-    
     <div class="collapse show submenu-box" id="subMenuData">
       <a href="dataobat.html">💊 Data Obat</a>
       <a href="dokterpraktek.html">🩺 Dokter Praktek</a>
@@ -94,7 +92,6 @@
       <a href="Penjualan.html">🛒 Penjualan</a>
       <a href="user.html">🧑‍🧒‍🧒 User</a>
     </div>
-
     <a href="laporan.html" class="active">📈 Laporan</a>
     <a href="logout.html">🚪 Logout</a>
   </nav>
